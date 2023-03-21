@@ -3,7 +3,7 @@ package com.example.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("proba")
+@Document("administrator")
 public class Administrator {
     @Id
     private String id;
