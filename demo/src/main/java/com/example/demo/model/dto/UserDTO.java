@@ -1,23 +1,28 @@
-package com.example.demo.model;
+package com.example.demo.model.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.example.demo.model.Ticket;
 
-@Document("administrators")
-public class Administrator {
-    @Id
+import java.util.List;
+
+public class UserDTO {
     private String id;
 
     private String name;
     private String surname;
     private String email;
     private String telephone;
+    private List<Ticket> tickets;
 
-    public Administrator(String name, String surname, String email, String telephone) {
+    public UserDTO() {
+    }
+
+    public UserDTO(String id, String name, String surname, String email, String telephone, List<Ticket> tickets) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.telephone = telephone;
+        this.tickets = tickets;
     }
 
     public String getId() {
@@ -58,5 +63,13 @@ public class Administrator {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

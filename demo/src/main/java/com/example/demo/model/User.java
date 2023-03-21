@@ -3,8 +3,10 @@ package com.example.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("administrators")
-public class Administrator {
+import java.util.List;
+
+@Document("users")
+public class User {
     @Id
     private String id;
 
@@ -12,12 +14,14 @@ public class Administrator {
     private String surname;
     private String email;
     private String telephone;
+    private List<Ticket> tickets;
 
-    public Administrator(String name, String surname, String email, String telephone) {
+    public User(String name, String surname, String email, String telephone, List<Ticket> tickets) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.telephone = telephone;
+        this.tickets = tickets;
     }
 
     public String getId() {
@@ -58,5 +62,17 @@ public class Administrator {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public void update(List<Ticket> tickets){
+        this.tickets = tickets;
     }
 }
