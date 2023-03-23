@@ -4,27 +4,29 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.Optional;
 
-@Document("tickets")
-public class Ticket {
+@Document("flights")
+public class Flight {
+
     @Id
     private String id;
 
     private String where;
     private String from;
     private Date date;
-    private Integer seat;
-    private User user;
-    private Flight flight;
+    private Double price;
 
-    public Ticket(String where, String from, Date date, Integer seat, User user, Flight flight) {
+    private Integer remainingTickets;
+
+    public Flight() {
+    }
+
+    public Flight(String where, String from, Date date, Double price, Integer remainingTickets) {
         this.where = where;
         this.from = from;
         this.date = date;
-        this.seat = seat;
-        this.user = user;
-        this.flight = flight;
+        this.price = price;
+        this.remainingTickets = remainingTickets;
     }
 
     public String getId() {
@@ -59,27 +61,19 @@ public class Ticket {
         this.date = date;
     }
 
-    public Integer getSeat() {
-        return seat;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setSeat(Integer seat) {
-        this.seat = seat;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getRemainingTickets() {
+        return remainingTickets;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Flight getFlight() {
-        return flight;
-    }
-
-    public void setFlight(Flight flight) {
-        this.flight = flight;
+    public void setRemainingTickets(Integer remainingTickets) {
+        this.remainingTickets = remainingTickets;
     }
 }
