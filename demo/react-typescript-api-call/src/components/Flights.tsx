@@ -5,22 +5,21 @@ import FlightService from "../services/FlightService"
 
 export default function Flights(){
     const [loading, setLoading] = useState(true);
-    const [flights, setFlights] = useState(null);
+    const [flights, setFlights] = useState<any>();
 
     useEffect(() => {
-            const fetchData = async () => {
-                setLoading(true);
-                try {
-                    const response = await FlightService.getFlights();
-                    setFlights(response.data);
-                } catch (error) {
-                    console.log(error);
-                }
-                setLoading(false);
-            };
-            fetchData();
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await FlightService.getFlights();
+                setFlights(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+            setLoading(false);
+        };
+        fetchData();
     }, []);
-
 
     return(
         <TableContainer component={Paper}>
