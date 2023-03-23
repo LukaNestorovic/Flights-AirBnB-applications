@@ -11,16 +11,18 @@ public class TicketDTO {
     private Date date;
     private Integer seat;
     private String userId;
+    private String flightId;
 
     public TicketDTO() {
     }
 
-    public TicketDTO(String where, String from, Date date, Integer seat, String userId) {
+    public TicketDTO(String where, String from, Date date, Integer seat, String userId, String flightId) {
         this.where = where;
         this.from = from;
         this.date = date;
         this.seat = seat;
         this.userId = userId;
+        this.flightId = flightId;
     }
 
 
@@ -62,5 +64,13 @@ public class TicketDTO {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(String flightId) {
+        this.flightId = flightId;
     }
 }

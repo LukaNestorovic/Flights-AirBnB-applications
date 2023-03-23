@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class AdministratorService {
-    @Autowired
-    private AdministratorRepository administratorRepository;
+    @Autowired private AdministratorRepository administratorRepository;
+
 
    public List<Administrator> findAll(){
         List<Administrator> administrators = this.administratorRepository.findAll();
