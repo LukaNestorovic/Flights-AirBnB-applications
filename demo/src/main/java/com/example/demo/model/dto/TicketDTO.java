@@ -9,20 +9,20 @@ public class TicketDTO {
     private String where;
     private String from;
     private Date date;
-    private Integer seat;
     private String userId;
     private String flightId;
+    private Integer numberOfTickets;
 
     public TicketDTO() {
     }
 
-    public TicketDTO(String where, String from, Date date, Integer seat, String userId, String flightId) {
+    public TicketDTO(String where, String from, Date date,String userId, String flightId, Integer numberOfTickets) {
         this.where = where;
         this.from = from;
         this.date = date;
-        this.seat = seat;
         this.userId = userId;
         this.flightId = flightId;
+        this.numberOfTickets = numberOfTickets;
     }
 
 
@@ -50,14 +50,6 @@ public class TicketDTO {
         this.date = date;
     }
 
-    public Integer getSeat() {
-        return seat;
-    }
-
-    public void setSeat(Integer seat) {
-        this.seat = seat;
-    }
-
     public String getUserId() {
         return userId;
     }
@@ -72,5 +64,13 @@ public class TicketDTO {
 
     public void setFlightId(String flightId) {
         this.flightId = flightId;
+    }
+
+    public Integer getNumberOfTickets() {
+        return numberOfTickets;
+    }
+
+    public void setNumberOfTickets(Integer numberOfTickets) {
+        this.numberOfTickets = numberOfTickets;
     }
 }

@@ -22,10 +22,9 @@ public class TicketService {
     private FlightRepository flightRepository;
 
     public Ticket create(TicketDTO ticketDTO){
-        System.out.println(ticketDTO.getUserId());
         User user = userRepository.findOneById(ticketDTO.getUserId());
         Flight flight = flightRepository.findOneById(ticketDTO.getFlightId());
-        Ticket newTicket = ticketRepository.save(new Ticket(ticketDTO.getWhere(), ticketDTO.getFrom(), ticketDTO.getDate(), ticketDTO.getSeat(), user, flight));
+        Ticket newTicket = ticketRepository.save(new Ticket(ticketDTO.getWhere(), ticketDTO.getFrom(), ticketDTO.getDate(),  user, flight));
         return newTicket;
     }
 }
