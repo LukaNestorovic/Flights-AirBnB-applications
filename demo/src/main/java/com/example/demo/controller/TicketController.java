@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/tickets")
+@CrossOrigin(origins = "*")
 public class TicketController {
     private final TicketService ticketService;
 
@@ -24,6 +22,11 @@ public class TicketController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketDTO ticket) throws Exception {
+        System.out.println(ticket.getNumberOfTickets());
+        for(int i=0; i<ticket.getNumberOfTickets()-1; i++) {
+            Ticket newTicket = ticketService.create(ticket);
+            System.out.println(ticket.getNumberOfTickets());
+        }
         Ticket newTicket = ticketService.create(ticket);
         return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
     }

@@ -14,15 +14,13 @@ public class Ticket {
     private String where;
     private String from;
     private Date date;
-    private Integer seat;
     private User user;
     private Flight flight;
 
-    public Ticket(String where, String from, Date date, Integer seat, User user, Flight flight) {
+    public Ticket(String where, String from, Date date, User user, Flight flight) {
         this.where = where;
         this.from = from;
         this.date = date;
-        this.seat = seat;
         this.user = user;
         this.flight = flight;
     }
@@ -57,14 +55,6 @@ public class Ticket {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Integer getSeat() {
-        return seat;
-    }
-
-    public void setSeat(Integer seat) {
-        this.seat = seat;
     }
 
     public User getUser() {
