@@ -2,11 +2,15 @@ package com.example.demo.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.security.Timestamp;
+import java.util.Collection;
 import java.util.List;
 
 @Document("users")
-public class User {
+public class User implements UserDetails {
     @Id
     private String id;
 
@@ -16,15 +20,22 @@ public class User {
 
     private String password;
     private String telephone;
-    private List<Ticket> tickets;
 
-    public User(String name, String surname, String email, String password,String telephone, List<Ticket> tickets) {
+    private boolean enabled;
+
+    private List<Role> roles;
+
+    private Timestamp lastPasswordResetDate;
+
+    public User() {
+    }
+
+    public User(String name, String surname, String email, String password, String telephone, List<Ticket> tickets) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
-        this.tickets = tickets;
     }
 
     public String getId() {
@@ -67,23 +78,61 @@ public class User {
         this.telephone = telephone;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
     }
 
     public String getPassword() {
         return password;
     }
 
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void update(List<Ticket> tickets){
-        this.tickets = tickets;
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Timestamp getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(Timestamp lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
     }
 }

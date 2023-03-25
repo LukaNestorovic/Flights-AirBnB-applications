@@ -10,19 +10,20 @@ public class UserDTO {
     private String name;
     private String surname;
     private String email;
+
+    private String password;
     private String telephone;
-    private List<Ticket> tickets;
 
     public UserDTO() {
     }
 
-    public UserDTO(String id, String name, String surname, String email, String telephone, List<Ticket> tickets) {
+    public UserDTO(String id, String name, String surname, String email, String telephone, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.telephone = telephone;
-        this.tickets = tickets;
+        this.password = password;
     }
 
     public String getId() {
@@ -65,11 +66,11 @@ public class UserDTO {
         this.telephone = telephone;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public String getPassword() {
+        return password;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
