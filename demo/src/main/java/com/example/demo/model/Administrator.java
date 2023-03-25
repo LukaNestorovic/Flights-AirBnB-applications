@@ -11,12 +11,14 @@ public class Administrator {
     private String name;
     private String surname;
     private String email;
+    private String password;
     private String telephone;
 
-    public Administrator(String name, String surname, String email, String telephone) {
+    public Administrator(String name, String surname, String email, String password,String telephone) {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.password = password;
         this.telephone = telephone;
     }
 
@@ -58,5 +60,13 @@ public class Administrator {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

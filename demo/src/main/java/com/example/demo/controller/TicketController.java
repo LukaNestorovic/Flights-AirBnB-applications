@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Flight;
 import com.example.demo.model.Ticket;
 import com.example.demo.model.dto.TicketDTO;
+import com.example.demo.service.FlightService;
 import com.example.demo.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,8 @@ public class TicketController {
     public TicketController(TicketService ticketService){
         this.ticketService = ticketService;
     }
+    @Autowired
+    public FlightService flightService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketDTO ticket) throws Exception {
@@ -28,6 +32,9 @@ public class TicketController {
             System.out.println(ticket.getNumberOfTickets());
         }
         Ticket newTicket = ticketService.create(ticket);
+        Flight flight = flightService.findOneById(ticket.getFlightId());
+        flight.update(ticket.getNumberOfTickets());
+        flightService.create(flight);
         return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
     }
 }

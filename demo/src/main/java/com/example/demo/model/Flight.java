@@ -76,4 +76,8 @@ public class Flight {
     public void setRemainingTickets(Integer remainingTickets) {
         this.remainingTickets = remainingTickets;
     }
+
+    public void update(Integer number){
+        remainingTickets = remainingTickets - number;
+    }
 }

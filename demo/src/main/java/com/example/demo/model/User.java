@@ -13,13 +13,16 @@ public class User {
     private String name;
     private String surname;
     private String email;
+
+    private String password;
     private String telephone;
     private List<Ticket> tickets;
 
-    public User(String name, String surname, String email, String telephone, List<Ticket> tickets) {
+    public User(String name, String surname, String email, String password,String telephone, List<Ticket> tickets) {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.password = password;
         this.telephone = telephone;
         this.tickets = tickets;
     }
@@ -70,6 +73,14 @@ public class User {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void update(List<Ticket> tickets){
