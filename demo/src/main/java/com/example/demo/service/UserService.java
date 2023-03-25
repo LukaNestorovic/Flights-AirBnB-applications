@@ -28,7 +28,7 @@ public class UserService {
         return newUser;
     }*/
 
-    public User save(UserDTO userDTO){
+/*    public User save(UserDTO userDTO){
         User u = new User();
         u.setEmail(userDTO.getEmail());
         u.setPassword(passwordEncoder.encode(userDTO.getPassword()));
@@ -39,15 +39,15 @@ public class UserService {
         u.setRoles(roles);
 
         return userRepository.save(u);
-    }
+    }*/
 
     public List<User> findAll(){
         List<User> users = userRepository.findAll();
         return users;
     }
 
-    public User findOneByEmail(String email){
+/*    public User findOneByEmail(String email){
         User user = userRepository.findOneByEmail(email);
         return user;
-    }
+    }*/
 }

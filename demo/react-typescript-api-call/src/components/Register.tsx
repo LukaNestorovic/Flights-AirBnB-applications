@@ -43,7 +43,9 @@ export default function Register() {
         repeatPassword: "",
         name: "",
         surname: "",
+        username: "",
         phone: "",
+        roles: ["user"]
     })
 
     const handleChange =
@@ -136,6 +138,7 @@ export default function Register() {
                 </FormControl>
                 <TextField id="outlined-basic" label="Name" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="name" onChange={(e) => handleChange2(e)}/>
                 <TextField id="outlined-basic" label="Surname" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="surname" onChange={(e) => handleChange2(e)}/>
+                <TextField id="outlined-basic" label="Username" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="username" onChange={(e) => handleChange2(e)}/>
                 <TextField id="outlined-basic" label="Phone" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="phone" onChange={(e) => handleChange2(e)}/>
                 <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={saveUser}>Register</Button>
             </Stack>

@@ -6,34 +6,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 
 @Document("roles")
-public class Role implements GrantedAuthority {
-    private static final long serialVersionUID = 1L;
-
+public class Role {
     @Id
-    String id;
+    private String id;
 
-    String name;
+    private ERole name;
 
-    @JsonIgnore
-    @Override
-    public String getAuthority() {
-        return name;
+    public Role() {
+
     }
 
-    public void setName(String name) {
+    public Role(ERole name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    @JsonIgnore
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public ERole getName() {
+        return name;
+    }
+
+    public void setName(ERole name) {
+        this.name = name;
     }
 }
