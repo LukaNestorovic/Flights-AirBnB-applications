@@ -20,15 +20,6 @@ public class AdministratorController {
         this.administratorService = administratorService;
     }
 
-/*    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AdministratorDTO> createAdministrator(@RequestBody AdministratorDTO administratorDTO) throws Exception {
-        Administrator administrator = new Administrator(administratorDTO.getName(), administratorDTO.getSurname(), administratorDTO.getEmail(), administratorDTO.getTelephone());
-        Administrator newAdministrator = administratorService.create(administrator);
-        AdministratorDTO newAdministratorDTO = new AdministratorDTO(newAdministrator.getId(), newAdministrator.getName(), newAdministrator.getSurname(), newAdministrator.getEmail(), newAdministrator.getTelephone());
-
-        return new ResponseEntity<>(newAdministratorDTO, HttpStatus.CREATED);
-    }*/
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Administrator> createAdministrator(@RequestBody Administrator administrator) throws Exception {
         Administrator newAdministrator = administratorService.create(administrator);

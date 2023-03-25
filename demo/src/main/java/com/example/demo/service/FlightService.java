@@ -29,4 +29,9 @@ public class FlightService {
         flightRepository.delete(flight);
         return flight;
     }
+
+    public Flight findOneById(String id){
+        Flight flight = flightRepository.findOneById(id);
+        return flight;
+    }
 }
