@@ -42,28 +42,31 @@ export default function FlightCreate() {
     const[repeatPassword, setRepeatPassword] = useState("")
     const navigate = useNavigate()
 
-    const [value, setValue] = React.useState<Dayjs | null>(dayjs());
-    const [value1, setValue1] = React.useState<Dayjs | null>(dayjs());
-    const datum = value
-    const datum1 = value1
+    const [value, setValue] = React.useState<Date | null>();
+    const [value1, setValue1] = React.useState<Date | null>();
+    const [datum, setDatum] = useState("")
+    const [datum1, setDatum1] = useState("")
 
+
+    const handleChange = (date:any) => {
+        setValue(date)
+        setDatum(JSON.stringify(date))
+    };
+
+    const handleChange1 = (date:any) => {
+        setValue1(date)
+        setDatum1(JSON.stringify(date))
+    };
 
     const [user, setUser] = useState({
         where: "",
         from: "",
-        takeoffDate: datum,
-        landingDate: datum1,
+        takeoffDate: "",
+        landingDate: "",
         price: "",
         remainingTickets: ""
     })
 
-    const handleChange = (event:any) => {
-        setValue(event.target.value);
-    };
-
-    const handleChange1 = (event:any) => {
-        setValue1(event.target.value);
-    };
 
     const handleClickShowPassword = () => {
         setValues({
@@ -103,18 +106,24 @@ export default function FlightCreate() {
                 <TextField id="outlined-basic" label="Where" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="where" onChange={(e) => handleChange2(e)} type="text"/>
                 <TextField id="outlined-basic" label="From" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="from" onChange={(e) => handleChange2(e)}/>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
+                    <DateTimePicker
                         label="Take off date"
-                        value={value}
-                        onChange={(newValue) => setValue(newValue)}
+                        value={user.takeoffDate}
+                        onChange={(newValue:any) => setUser({
+                            ...user,
+                            takeoffDate: newValue
+                        })}
                     />
                 </LocalizationProvider>
 
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker
+                <LocalizationProvider dateAdapter={AdapterDayjs} >
+                    <DateTimePicker
                         label="Landing date"
-                        value={value1}
-                        onChange={(newValue) => setValue1(newValue)}
+                        value={user.landingDate}
+                        onChange={(newValue:any) => setUser({
+                            ...user,
+                            landingDate: newValue
+                        })}
                     />
                 </LocalizationProvider>
 
