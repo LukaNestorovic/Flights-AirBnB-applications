@@ -15,7 +15,7 @@ export default function UserFlights(){
         from: "",
         takeoffDate: "",
         landingDate: "",
-        remainingTickets: ""
+        remainingTickets: "",
     })
     const handleChange2 = (e: any) => {
         const value = e.target.value;
@@ -28,8 +28,7 @@ export default function UserFlights(){
             .then((response) => {
                 console.log(response);
                 setUserFlights(response.data);
-//                    localStorage.setItem("enable", null)
-//                    localStorage.setItem("id", response.data.id)
+
 
 //                    navigate("/profile");
             })
@@ -42,14 +41,8 @@ export default function UserFlights(){
         const fetchData = async () => {
             setLoading(true);
             try {
-//                if(user.remainingTickets === ""){
                     const response = await FlightService.getFlights();
                     setUserFlights(response.data);
-//                }
-/*                else {
-                    const response = await FlightService.getSearch(user);
-                    setUserFlights(response.data);
-                }*/
             } catch (error) {
                 console.log(error);
             }
@@ -105,13 +98,15 @@ export default function UserFlights(){
                         <TableCell align={"center"}>Remaining tickets</TableCell>
                         <TableCell align={"center"} >Number of tickets</TableCell>
                         <TableCell align={"center"} >Buy</TableCell>
+                        <TableCell align={"center"} >Price in total</TableCell>
                     </TableRow>
                 </TableHead>
                 {!loading && (
                     <TableBody>
-                        {userFlights.map((userFlight:any) => (
+                        {userFlights.map((userFlight:any, price:any) => (
                             <UserFlight
                                 userFlight={userFlight}
+                                price={user.remainingTickets}
                                 key={userFlight.id}/>
                         ))}
                     </TableBody>
