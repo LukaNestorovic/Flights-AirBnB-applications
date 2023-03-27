@@ -11,8 +11,8 @@ export default function UserFlights(){
     const [searchResults, setSearchResults] = useState([]);
 
     const [searchData, setSearchData] = useState({
-        departure: "",
-        arrival: "",
+        from: "",
+        where: "",
         date: "",
         passengers: "",
         flights: [],
@@ -28,11 +28,11 @@ export default function UserFlights(){
 
     const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const { departure, arrival, date, passengers } = searchData;
+      const { from, where, date, passengers } = searchData;
       try {
         const response = await FlightService.searchFlights(
-          departure,
-          arrival,
+          from,
+          where,
           date,
           parseInt(passengers)
         );
@@ -74,13 +74,13 @@ export default function UserFlights(){
               <TextField
                 label="Departure"
                 name="departure"
-                value={searchData.departure}
+                value={searchData.from}
                 onChange={handleChange}
               />
               <TextField
                 label="Arrival"
                 name="arrival"
-                value={searchData.arrival}
+                value={searchData.where}
                 onChange={handleChange}
               />
               <TextField
