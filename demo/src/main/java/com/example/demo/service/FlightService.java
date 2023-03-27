@@ -36,5 +36,9 @@ public class FlightService {
         return flight;
     }
 
+    public List<Flight> searchFlights(String from, String where, LocalDate date, Integer passengers) {
+        return this.flightRepository.findByFromAndWhereAndDateAndRemainingTicketsGreaterThanEqual(from, where, date, passengers);
+    }
+
 
 }

@@ -10,5 +10,6 @@ public interface FlightRepository extends MongoRepository<Flight, String> {
     Flight findOneById(String id);
 
     List<Flight> findByFromAndWhereAndDateAndRemainingTicketsGreaterThanEqual(
-            String from, String where, LocalDate date, int passengers);
+            String from, String where, LocalDate date, Integer remainingTickets);
+
 }
