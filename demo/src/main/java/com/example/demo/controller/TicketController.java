@@ -28,15 +28,21 @@ public class TicketController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Ticket> createTicket(@RequestBody TicketDTO ticket) throws Exception {
-        System.out.println(ticket.getNumberOfTickets());
-        for(int i=0; i<ticket.getNumberOfTickets()-1; i++) {
-            Ticket newTicket = ticketService.create(ticket);
-            System.out.println(ticket.getNumberOfTickets());
-        }
-        Ticket newTicket = ticketService.create(ticket);
         Flight flight = flightService.findOneById(ticket.getFlightId());
-        flight.update(ticket.getNumberOfTickets());
-        flightService.create(flight);
-        return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
+        if((flight.getRemainingTickets() - ticket.getNumberOfTickets()) < 0){
+            System.out.println("aaa");
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        }
+        else {
+            System.out.println("bbb");
+            for (int i = 0; i < ticket.getNumberOfTickets() - 1; i++) {
+                Ticket newTicket = ticketService.create(ticket);
+            }
+            Ticket newTicket = ticketService.create(ticket);
+
+            flight.update(ticket.getNumberOfTickets());
+            flightService.create(flight);
+            return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
+        }
     }
 }

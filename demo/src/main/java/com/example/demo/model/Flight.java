@@ -80,4 +80,6 @@ public class Flight {
     public void update(Integer number){
         remainingTickets = remainingTickets - number;
     }
+
+
 }
