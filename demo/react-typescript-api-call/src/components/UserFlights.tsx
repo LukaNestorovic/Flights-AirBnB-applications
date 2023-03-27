@@ -1,11 +1,51 @@
 import {useEffect, useState} from "react";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, TextField} from "@mui/material";
 import UserFlight from "./UserFlight";
 import FlightService from "../services/FlightService"
+
 
 export default function UserFlights(){
     const [loading, setLoading] = useState(true);
     const [userFlights, setUserFlights] = useState<any>();
+
+    const [searchResults, setSearchResults] = useState([]);
+
+    const [searchData, setSearchData] = useState({
+        departure: "",
+        arrival: "",
+        date: "",
+        passengers: "",
+        flights: [],
+    });
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = event.target;
+      setSearchData((prevSearchData) => ({
+        ...prevSearchData,
+        [name]: value,
+      }));
+    };
+
+    const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const { departure, arrival, date, passengers } = searchData;
+      try {
+        const response = await FlightService.searchFlights(
+          departure,
+          arrival,
+          date,
+          parseInt(passengers)
+        );
+        setSearchData((prevSearchData) => ({
+          ...prevSearchData,
+          flights: response.data,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,10 +61,48 @@ export default function UserFlights(){
         fetchData();
     }, []);
 
+    useEffect(() => {
+      setSearchResults(searchData.flights);
+    }, [searchData.flights]);
+
     return(
         <TableContainer component={Paper}>
             <h1 style={{textAlign: 'center',
                 alignSelf: 'center'}}>Flights</h1>
+
+            <form onSubmit={handleSearch}>
+              <TextField
+                label="Departure"
+                name="departure"
+                value={searchData.departure}
+                onChange={handleChange}
+              />
+              <TextField
+                label="Arrival"
+                name="arrival"
+                value={searchData.arrival}
+                onChange={handleChange}
+              />
+              <TextField
+                label="Date"
+                name="date"
+                type="date"
+                value={searchData.date}
+                onChange={handleChange}
+                InputLabelProps={{ shrink: true }}
+              />
+              <TextField
+                label="Passengers"
+                name="passengers"
+                value={searchData.passengers}
+                onChange={handleChange}
+              />
+              <Button type="submit" variant="contained">
+                Search
+              </Button>
+            </form>
+
+
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>

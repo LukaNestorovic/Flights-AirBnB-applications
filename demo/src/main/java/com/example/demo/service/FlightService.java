@@ -5,6 +5,7 @@ import com.example.demo.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -34,4 +35,6 @@ public class FlightService {
         Flight flight = flightRepository.findOneById(id);
         return flight;
     }
+
+
 }

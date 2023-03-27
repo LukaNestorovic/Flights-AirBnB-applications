@@ -10,6 +10,17 @@ class FlightService {
     buyTicket(dto:any){
         return axios.post(FLIGHTS_API_BASE_URL + "tickets", dto)
     }
+
+    async searchFlights(from: string, where: string, date: string, number: number) {
+        try {
+            const response = await axios.get(`${FLIGHTS_API_BASE_URL}search?departure=${from}&arrival=${where}&date=${date}&passengers=${number}`);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
 }
 
 export default new FlightService();

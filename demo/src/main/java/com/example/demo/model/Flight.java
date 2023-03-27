@@ -15,8 +15,9 @@ public class Flight {
     private String from;
     private Date date;
     private Double price;
-
     private Integer remainingTickets;
+
+
 
     public Flight() {
     }
