@@ -6,7 +6,8 @@ public class FlightDTO {
     private String id;
     private String where;
     private String from;
-    private Date date;
+    private Date takeoffDate;
+    private Date landingDate;
     private Double price;
 
     private Integer remainingTickets;
@@ -14,11 +15,12 @@ public class FlightDTO {
     public FlightDTO() {
     }
 
-    public FlightDTO(String id, String where, String from, Date date, Double price, Integer remainingTickets) {
+    public FlightDTO(String id, String where, String from, Date takeoffDate, Date landingDate, Double price, Integer remainingTickets) {
         this.id = id;
         this.where = where;
         this.from = from;
-        this.date = date;
+        this.takeoffDate = takeoffDate;
+        this.landingDate = landingDate;
         this.price = price;
         this.remainingTickets = remainingTickets;
     }
@@ -47,14 +49,6 @@ public class FlightDTO {
         this.from = from;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Double getPrice() {
         return price;
     }
@@ -69,5 +63,21 @@ public class FlightDTO {
 
     public void setRemainingTickets(Integer remainingTickets) {
         this.remainingTickets = remainingTickets;
+    }
+
+    public Date getTakeoffDate() {
+        return takeoffDate;
+    }
+
+    public void setTakeoffDate(Date takeoffDate) {
+        this.takeoffDate = takeoffDate;
+    }
+
+    public Date getLandingDate() {
+        return landingDate;
+    }
+
+    public void setLandingDate(Date landingDate) {
+        this.landingDate = landingDate;
     }
 }

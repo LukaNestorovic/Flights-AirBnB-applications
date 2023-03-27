@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/tickets")
 @CrossOrigin(origins = "*")
@@ -44,5 +46,12 @@ public class TicketController {
             flightService.create(flight);
             return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
         }
+    }
+
+    @GetMapping(path = "/{id}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<List<Ticket>> findAllByUserId(@PathVariable("id") String id){
+        List<Ticket> tickets = ticketService.findAllByUserId(id);
+        return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
 }

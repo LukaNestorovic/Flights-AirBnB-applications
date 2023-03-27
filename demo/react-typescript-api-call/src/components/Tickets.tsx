@@ -1,18 +1,18 @@
 import {useEffect, useState} from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import Flight from "./Flight";
-import FlightService from "../services/FlightService"
+import Ticket from "./Ticket";
+import TicketService from "../services/TicketService"
 
-export default function Flights(){
+export default function Tickets(){
     const [loading, setLoading] = useState(true);
-    const [flights, setFlights] = useState<any>();
+    const [tickets, setTickets] = useState<any>();
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await FlightService.getFlights();
-                setFlights(response.data);
+                const response = await TicketService.getTickets(localStorage.getItem("userId"));
+                setTickets(response.data);
             } catch (error) {
                 console.log(error);
             }
@@ -24,7 +24,7 @@ export default function Flights(){
     return(
         <TableContainer component={Paper}>
             <h1 style={{textAlign: 'center',
-                alignSelf: 'center'}}>Flights</h1>
+                alignSelf: 'center'}}>Tickets</h1>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
@@ -34,16 +34,14 @@ export default function Flights(){
                         <TableCell align={"center"}>Take Off Date</TableCell>
                         <TableCell align={"center"}>Landing Date</TableCell>
                         <TableCell align={"center"}>Price</TableCell>
-                        <TableCell align={"center"}>Remaining tickets</TableCell>
-                        <TableCell align={"center"}>Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 {!loading && (
                     <TableBody>
-                        {flights.map((flight:any) => (
-                            <Flight
-                                flight={flight}
-                                key={flight.id}/>
+                        {tickets.map((ticket:any) => (
+                            <Ticket
+                                ticket={ticket}
+                                key={ticket.id}/>
                         ))}
                     </TableBody>
                 )}

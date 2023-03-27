@@ -11,6 +11,14 @@ class FlightService {
     buyTicket(dto:any){
         return axios.post(FLIGHTS_API_BASE_URL + "tickets", dto, { headers: authHeader() })
     }
+
+    create(dto:any){
+        return axios.post(FLIGHTS_API_BASE_URL + "flights", dto, { headers: authHeader() })
+    }
+
+    delete(id:any){
+        return axios.delete(FLIGHTS_API_BASE_URL + "flights/" + id, { headers: authHeader() })
+    }
 }
 
 export default new FlightService();

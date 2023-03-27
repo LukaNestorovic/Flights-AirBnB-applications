@@ -34,6 +34,7 @@ public class FlightController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Flight> createFlight(@RequestBody Flight flight) throws Exception {
+        System.out.println(flight.getLandingDate());
         Flight newFlight = flightService.create(flight);
         return new ResponseEntity<>(newFlight, HttpStatus.CREATED);
     }

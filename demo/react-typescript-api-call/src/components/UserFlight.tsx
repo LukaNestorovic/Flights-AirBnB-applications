@@ -19,7 +19,8 @@ const UserFlight = ({userFlight}) => {
     const [dto, setDto] = useState({
         where: userFlight.where,
         from: userFlight.from,
-        date: userFlight.date,
+        takeoffDate: userFlight.takeoffDate,
+        landingDate: userFlight.landingDate,
         price: userFlight.price,
         flightId: userFlight.id,
         userId: user,
@@ -51,8 +52,11 @@ return (
         <div >{userFlight.from}</div>
         </TableCell>
         <TableCell align={"center"}>
-        <div >{userFlight.date}</div>
+        <div >{userFlight.takeoffDate}</div>
         </TableCell>
+            <TableCell align={"center"}>
+                <div >{userFlight.landingDate}</div>
+            </TableCell>
         <TableCell align={"center"}>
         <div >{userFlight.price}</div>
         </TableCell>
