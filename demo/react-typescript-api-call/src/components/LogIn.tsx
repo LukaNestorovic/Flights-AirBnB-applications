@@ -76,6 +76,7 @@ export default function LogIn() {
             .then((response) => {
                 console.log(response);
                 localStorage.setItem("user", JSON.stringify(response.data));
+                localStorage.setItem("userId", response.data.id);
                 if(response.data.roles.includes("ROLE_USER"))
                     navigate("/userflights")
                 else

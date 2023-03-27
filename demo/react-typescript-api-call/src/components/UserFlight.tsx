@@ -14,13 +14,16 @@ const UserFlight = ({userFlight}) => {
         setDto({ ...dto, [e.target.name]: value });
     };
 
+    const user = localStorage.getItem("userId")
+
     const [dto, setDto] = useState({
         where: userFlight.where,
         from: userFlight.from,
-        date: userFlight.date,
+        takeoffDate: userFlight.takeoffDate,
+        landingDate: userFlight.landingDate,
         price: userFlight.price,
         flightId: userFlight.id,
-        userId: "641a3679b9d80171fedea732",
+        userId: user,
         numberOfTickets: ""
     })
 
@@ -33,6 +36,8 @@ const UserFlight = ({userFlight}) => {
                 window.location.reload();
             }).catch((error) => {
             console.log(error);
+            if(error.response.status == 406)
+                alert("There is not enough tickets available!");
         })
     };
 return (
@@ -47,8 +52,11 @@ return (
         <div >{userFlight.from}</div>
         </TableCell>
         <TableCell align={"center"}>
-        <div >{userFlight.date}</div>
+        <div >{userFlight.takeoffDate}</div>
         </TableCell>
+            <TableCell align={"center"}>
+                <div >{userFlight.landingDate}</div>
+            </TableCell>
         <TableCell align={"center"}>
         <div >{userFlight.price}</div>
         </TableCell>

@@ -76,14 +76,14 @@ export default function Register() {
                 .then((response) => {
                     console.log(response);
 //                    localStorage.setItem("enable", null)
-                    localStorage.setItem("id", response.data.id)
+//                    localStorage.setItem("id", response.data.id)
 
 //                    navigate("/profile");
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-        } else alert("Sifre se ne poklapaju")
+        } else alert("Password not matching!")
     };
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {

@@ -31,7 +31,8 @@ export default function UserFlights(){
                         <TableCell align={"center"}>Id</TableCell>
                         <TableCell align={"center"}>Where</TableCell>
                         <TableCell align={"center"}>From</TableCell>
-                        <TableCell align={"center"}>Date</TableCell>
+                        <TableCell align={"center"}>Take Off Date</TableCell>
+                        <TableCell align={"center"}>Landing Date</TableCell>
                         <TableCell align={"center"}>Price</TableCell>
                         <TableCell align={"center"}>Remaining tickets</TableCell>
                         <TableCell align={"center"} >Number of tickets</TableCell>
