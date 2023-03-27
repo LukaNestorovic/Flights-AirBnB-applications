@@ -37,26 +37,7 @@ export default function FlightCreate() {
         email: '',
         showPassword: false,
     });
-    const[email, setEmail] = useState("")
-    const[password, setPassword] = useState("")
-    const[repeatPassword, setRepeatPassword] = useState("")
-    const navigate = useNavigate()
 
-    const [value, setValue] = React.useState<Date | null>();
-    const [value1, setValue1] = React.useState<Date | null>();
-    const [datum, setDatum] = useState("")
-    const [datum1, setDatum1] = useState("")
-
-
-    const handleChange = (date:any) => {
-        setValue(date)
-        setDatum(JSON.stringify(date))
-    };
-
-    const handleChange1 = (date:any) => {
-        setValue1(date)
-        setDatum1(JSON.stringify(date))
-    };
 
     const [user, setUser] = useState({
         where: "",
@@ -107,6 +88,7 @@ export default function FlightCreate() {
                 <TextField id="outlined-basic" label="From" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="from" onChange={(e) => handleChange2(e)}/>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateTimePicker
+                        disablePast
                         label="Take off date"
                         value={user.takeoffDate}
                         onChange={(newValue:any) => setUser({
@@ -118,6 +100,7 @@ export default function FlightCreate() {
 
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <DateTimePicker
+                        disablePast
                         label="Landing date"
                         value={user.landingDate}
                         onChange={(newValue:any) => setUser({
