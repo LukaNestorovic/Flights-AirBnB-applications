@@ -1,9 +1,16 @@
 package com.example.demo.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.security.Timestamp;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Document("users")
 public class User {
@@ -13,18 +20,22 @@ public class User {
     private String name;
     private String surname;
     private String email;
-
+    private String username;
     private String password;
     private String telephone;
-    private List<Ticket> tickets;
+    @DBRef
+    private Set<Role> roles = new HashSet<>();
 
-    public User(String name, String surname, String email, String password,String telephone, List<Ticket> tickets) {
+    public User() {
+    }
+
+    public User(String name, String surname, String email, String username,String password, String telephone) {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.username = username;
         this.password = password;
         this.telephone = telephone;
-        this.tickets = tickets;
     }
 
     public String getId() {
@@ -59,20 +70,12 @@ public class User {
         this.email = email;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getUsername() {
+        return username;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -83,7 +86,19 @@ public class User {
         this.password = password;
     }
 
-    public void update(List<Ticket> tickets){
-        this.tickets = tickets;
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

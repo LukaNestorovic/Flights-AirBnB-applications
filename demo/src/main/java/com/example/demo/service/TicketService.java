@@ -10,6 +10,7 @@ import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,7 +25,12 @@ public class TicketService {
     public Ticket create(TicketDTO ticketDTO){
         User user = userRepository.findOneById(ticketDTO.getUserId());
         Flight flight = flightRepository.findOneById(ticketDTO.getFlightId());
-        Ticket newTicket = ticketRepository.save(new Ticket(ticketDTO.getWhere(), ticketDTO.getFrom(), ticketDTO.getDate(),  user, flight));
+        Ticket newTicket = ticketRepository.save(new Ticket(ticketDTO.getWhere(), ticketDTO.getFrom(), ticketDTO.getTakeoffDate(), ticketDTO.getLandingDate(), ticketDTO.getPrice(),  user, flight));
         return newTicket;
+    }
+
+    public List<Ticket> findAllByUserId(String id){
+        List<Ticket> tickets = this.ticketRepository.findAllByUserId(id);
+        return tickets;
     }
 }

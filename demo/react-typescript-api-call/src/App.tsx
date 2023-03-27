@@ -6,6 +6,9 @@ import Flights from "./components/Flights";
 import UserFlights from "./components/UserFlights";
 import LogIn from "./components/LogIn";
 import Register from "./components/Register";
+import FlightCreate from "./components/FlightCreate";
+import Tickets from "./components/Tickets";
+
 
 function App() {
   return (
@@ -17,6 +20,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/flights" element={<Flights />} />
             <Route path="/userflights" element={<UserFlights />} />
+            <Route path="/createflights" element={<FlightCreate />} />
+            <Route path="/tickets" element={<Tickets />} />
         </Routes>
       </BrowserRouter>
     </>

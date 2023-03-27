@@ -1,25 +1,16 @@
 package com.example.demo.model.dto;
 
 public class LogInDTO {
-    String id;
     String password;
 
-    String email;
+    String username;
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -33,9 +24,8 @@ public class LogInDTO {
     public LogInDTO() {
     }
 
-    public LogInDTO(String id, String password, String email) {
-        this.id = id;
+    public LogInDTO(String password, String username) {
         this.password = password;
-        this.email = email;
+        this.username = username;
     }
 }

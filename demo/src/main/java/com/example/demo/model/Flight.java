@@ -10,21 +10,21 @@ public class Flight {
 
     @Id
     private String id;
-
     private String where;
     private String from;
-    private Date date;
+    private Date takeoffDate;
+    private Date landingDate;
     private Double price;
-
     private Integer remainingTickets;
 
     public Flight() {
     }
 
-    public Flight(String where, String from, Date date, Double price, Integer remainingTickets) {
+    public Flight(String where, String from, Date takeoffDate, Date landingDate, Double price, Integer remainingTickets) {
         this.where = where;
         this.from = from;
-        this.date = date;
+        this.takeoffDate = takeoffDate;
+        this.landingDate = landingDate;
         this.price = price;
         this.remainingTickets = remainingTickets;
     }
@@ -53,13 +53,7 @@ public class Flight {
         this.from = from;
     }
 
-    public Date getDate() {
-        return date;
-    }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public Double getPrice() {
         return price;
@@ -79,5 +73,21 @@ public class Flight {
 
     public void update(Integer number){
         remainingTickets = remainingTickets - number;
+    }
+
+    public Date getTakeoffDate() {
+        return takeoffDate;
+    }
+
+    public void setTakeoffDate(Date takeoffDate) {
+        this.takeoffDate = takeoffDate;
+    }
+
+    public Date getLandingDate() {
+        return landingDate;
+    }
+
+    public void setLandingDate(Date landingDate) {
+        this.landingDate = landingDate;
     }
 }

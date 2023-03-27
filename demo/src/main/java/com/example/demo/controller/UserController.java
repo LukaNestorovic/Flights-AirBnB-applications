@@ -29,9 +29,9 @@ public class UserController {
 
 
 
-    @PostMapping(path = "/users",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createUser(@RequestBody User user) throws Exception {
-        User newUser = userService.create(user);
+/*    @PostMapping(path = "/users",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> createUser(@RequestBody UserDTO user) throws Exception {
+        User newUser = userService.save(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
@@ -62,5 +62,5 @@ public class UserController {
         }
 
         return new ResponseEntity<>(logIn, HttpStatus.NOT_FOUND);
-    }
+    }*/
 }

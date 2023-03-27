@@ -20,7 +20,7 @@ import UserService from "../services/UserService";
 
 interface State {
     password: string;
-    email: string;
+    username: string;
     showPassword: boolean;
 }
 
@@ -28,16 +28,16 @@ export default function LogIn() {
     const paperStyle={alignItems: 'center'}
     const [values, setValues] = React.useState<State>({
         password: '',
-        email: '',
+        username: '',
         showPassword: false,
     });
-    const[email, setEmail] = useState("")
+    const[username, setUsername] = useState("")
     const[password, setPassword] = useState("")
     const navigate = useNavigate()
 
     const [user, setUser] = useState({
         id: "",
-        email: "",
+        username: "",
         password: ""
     });
 
@@ -60,7 +60,7 @@ export default function LogIn() {
 
     function sendLoginRequest() {
         const reqBody = {
-            email: email,
+            username: username,
             password: password
         }
     }
@@ -75,11 +75,16 @@ export default function LogIn() {
         UserService.logIn(user)
             .then((response) => {
                 console.log(response);
-                localStorage.setItem("id", response.data.id);
+                localStorage.setItem("user", JSON.stringify(response.data));
+                localStorage.setItem("userId", response.data.id);
+                if(response.data.roles.includes("ROLE_USER"))
+                    navigate("/userflights")
+                else
+                    navigate("/flights")
             })
             .catch((error) => {
                 console.log(error);
-                alert("Wrong email or password");
+                alert("Wrong username or password");
             });
     };
 
@@ -87,7 +92,7 @@ export default function LogIn() {
         <Container>
             <Stack direction="column" spacing={1}>
                 <h1 style={{alignSelf:'center'}}>LogIn</h1>
-                <TextField id="outlined-basic" label="Email" variant="filled" style={{width:'60ch', alignSelf:'center'}} value={email} onChange={(e) => {setEmail(e.target.value); handleChange1(e)}} name="email"/>
+                <TextField id="outlined-basic" label="Username" variant="filled" style={{width:'60ch', alignSelf:'center'}} value={username} onChange={(e) => {setUsername(e.target.value); handleChange1(e)}} name="username"/>
                 <FormControl variant="filled" style={{width:'60ch', alignSelf:'center'}}>
                     <InputLabel htmlFor="filled-adornment-password" >Password</InputLabel>
                     <FilledInput

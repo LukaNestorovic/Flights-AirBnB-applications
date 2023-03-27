@@ -8,7 +8,9 @@ public class TicketDTO {
 
     private String where;
     private String from;
-    private Date date;
+    private Date takeoffDate;
+    private Date landingDate;
+    private Double price;
     private String userId;
     private String flightId;
     private Integer numberOfTickets;
@@ -16,10 +18,12 @@ public class TicketDTO {
     public TicketDTO() {
     }
 
-    public TicketDTO(String where, String from, Date date,String userId, String flightId, Integer numberOfTickets) {
+    public TicketDTO(String where, String from, Date takeoffDate, Date landingDate, Double price, String userId, String flightId, Integer numberOfTickets) {
         this.where = where;
         this.from = from;
-        this.date = date;
+        this.takeoffDate = takeoffDate;
+        this.landingDate = landingDate;
+        this.price = price;
         this.userId = userId;
         this.flightId = flightId;
         this.numberOfTickets = numberOfTickets;
@@ -40,14 +44,6 @@ public class TicketDTO {
 
     public void setFrom(String from) {
         this.from = from;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getUserId() {
@@ -72,5 +68,29 @@ public class TicketDTO {
 
     public void setNumberOfTickets(Integer numberOfTickets) {
         this.numberOfTickets = numberOfTickets;
+    }
+
+    public Date getTakeoffDate() {
+        return takeoffDate;
+    }
+
+    public void setTakeoffDate(Date takeoffDate) {
+        this.takeoffDate = takeoffDate;
+    }
+
+    public Date getLandingDate() {
+        return landingDate;
+    }
+
+    public void setLandingDate(Date landingDate) {
+        this.landingDate = landingDate;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
