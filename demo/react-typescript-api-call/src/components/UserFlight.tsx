@@ -4,7 +4,7 @@ import {useState} from "react";
 
 
 // @ts-ignore
-const UserFlight = ({userFlight}) => {
+const UserFlight = ({userFlight,price}) => {
 
     const[numberOfTickets, setNumberOfTickets] = useState("")
     const[remainingTickets, setRemainingTickets] = useState()
@@ -69,7 +69,9 @@ return (
             <TableCell align={"center"}>
                 <div><button onClick={update}>Buy</button></div>
             </TableCell>
-
+            <TableCell align={"center"}>
+                <div >{userFlight.remainingTickets * price}</div>
+            </TableCell>
         </TableRow>
 );
 };
