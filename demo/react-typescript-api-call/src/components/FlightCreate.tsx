@@ -72,10 +72,7 @@ export default function FlightCreate() {
             FlightService.create(user)
                 .then((response) => {
                     console.log(response);
-//                    localStorage.setItem("enable", null)
-//                    localStorage.setItem("id", response.data.id)
-
-//                    navigate("/profile");
+                    navigate("/flights");
                 })
                 .catch((error) => {
                     console.log(error);
@@ -100,7 +97,7 @@ export default function FlightCreate() {
                 <TextField id="outlined-basic" label="Where" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="where" onChange={(e) => handleChange2(e)} type="text"/>
                 <TextField id="outlined-basic" label="From" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="from" onChange={(e) => handleChange2(e)}/>
                 <LocalizationProvider style={{width:'60ch'}} dateAdapter={AdapterDayjs}>
-                    <DateTimePicker 
+                    <DateTimePicker
                         disablePast
                         label="Take off date"
                         value={user.takeoffDate}

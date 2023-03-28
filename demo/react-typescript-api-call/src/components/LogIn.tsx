@@ -118,6 +118,7 @@ export default function LogIn() {
                 </FormControl>
                 <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={saveUser}>LogIn</Button>
                 <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/register")}>Register</Button>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/userflights")}>Flights</Button>
             </Stack>
         </Container>
     );

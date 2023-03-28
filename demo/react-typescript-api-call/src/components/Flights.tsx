@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {Button, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import Flight from "./Flight";
 import FlightService from "../services/FlightService"
 import {useNavigate} from "react-router-dom";
+import * as React from "react";
 
 export default function Flights(){
     const [loading, setLoading] = useState(true);
@@ -34,6 +35,7 @@ export default function Flights(){
 
     return(
         <TableContainer component={Paper}>
+            <Stack direction="column">
             <h1 style={{textAlign: 'center',
                 alignSelf: 'center'}}>Flights</h1>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -59,7 +61,10 @@ export default function Flights(){
                     </TableBody>
                 )}
             </Table>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/adminhome")}>Home</Button>
+            </Stack>
         </TableContainer>
+
     );
 };
 

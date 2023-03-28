@@ -121,6 +121,7 @@ export default function UserFlights(){
                     </TableBody>
                 )}
             </Table>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/userhome")}>Home</Button>
             </Stack>
         </TableContainer>
     );
