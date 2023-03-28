@@ -6,10 +6,13 @@ import TextField from "@mui/material/TextField";
 import * as React from "react";
 import {DateTimePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {useNavigate} from "react-router-dom";
 
 export default function UserFlights(){
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
     const [userFlights, setUserFlights] = useState<any>();
+    const roles = localStorage.getItem("roles")
     const [user, setUser] = useState({
         where: "",
         from: "",
@@ -38,6 +41,12 @@ export default function UserFlights(){
     };
 
     useEffect(() => {
+        if(roles == null){
+        }
+        else if(!roles.includes("ROLE_USER")){
+            console.error("Access denied")
+            navigate("/")
+        }
         const fetchData = async () => {
             setLoading(true);
             try {

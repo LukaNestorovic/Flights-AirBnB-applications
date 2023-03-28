@@ -70,7 +70,7 @@ return (
                 <div><button onClick={update}>Buy</button></div>
             </TableCell>
             <TableCell align={"center"}>
-                <div >{userFlight.remainingTickets * price}</div>
+                <div >{userFlight.price * price}</div>
             </TableCell>
         </TableRow>
 );

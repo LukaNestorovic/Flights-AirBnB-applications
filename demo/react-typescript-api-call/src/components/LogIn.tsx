@@ -77,10 +77,11 @@ export default function LogIn() {
                 console.log(response);
                 localStorage.setItem("user", JSON.stringify(response.data));
                 localStorage.setItem("userId", response.data.id);
+                localStorage.setItem("roles", response.data.roles);
                 if(response.data.roles.includes("ROLE_USER"))
-                    navigate("/userflights")
+                    navigate("/userhome")
                 else
-                    navigate("/flights")
+                    navigate("/adminhome")
             })
             .catch((error) => {
                 console.log(error);

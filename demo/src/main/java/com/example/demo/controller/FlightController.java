@@ -27,7 +27,7 @@ public class FlightController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+//    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<List<Flight>> findAll(){
         List<Flight> flights = flightService.findAll();
         return new ResponseEntity<>(flights, HttpStatus.OK);
@@ -49,7 +49,7 @@ public class FlightController {
     }
 
     @PostMapping(path = "/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<List<Flight>> findSearch(@RequestBody SearchDTO searchDTO){
         List<Flight> flights = flightService.findSearch(searchDTO);
         List<Flight> ispravna = new ArrayList<>();

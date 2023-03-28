@@ -15,7 +15,7 @@ import {
 }                              from "@mui/material";
 import Visibility              from '@mui/icons-material/Visibility';
 import VisibilityOff           from '@mui/icons-material/VisibilityOff';
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {useNavigate}           from "react-router-dom";
 import UserService             from "../services/FlightService"
 import {wait}                  from "@testing-library/user-event/dist/utils";
@@ -48,6 +48,8 @@ export default function FlightCreate() {
         remainingTickets: ""
     })
 
+    const navigate = useNavigate()
+    const roles = localStorage.getItem("roles")
 
     const handleClickShowPassword = () => {
         setValues({
@@ -80,14 +82,25 @@ export default function FlightCreate() {
                 });
     };
 
+    useEffect(() => {
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
+        else if(!roles.includes("ROLE_ADMIN")){
+            console.error("Access denied")
+            navigate("/")
+        }
+    },[])
+
     return (
         <Container>
             <Stack direction="column" spacing={1}>
                 <h1 style={{alignSelf:'center'}}>Register</h1>
                 <TextField id="outlined-basic" label="Where" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="where" onChange={(e) => handleChange2(e)} type="text"/>
                 <TextField id="outlined-basic" label="From" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="from" onChange={(e) => handleChange2(e)}/>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateTimePicker
+                <LocalizationProvider style={{width:'60ch'}} dateAdapter={AdapterDayjs}>
+                    <DateTimePicker 
                         disablePast
                         label="Take off date"
                         value={user.takeoffDate}
@@ -98,7 +111,7 @@ export default function FlightCreate() {
                     />
                 </LocalizationProvider>
 
-                <LocalizationProvider dateAdapter={AdapterDayjs} >
+                <LocalizationProvider style={{width:'60ch'}} dateAdapter={AdapterDayjs} >
                     <DateTimePicker
                         disablePast
                         label="Landing date"

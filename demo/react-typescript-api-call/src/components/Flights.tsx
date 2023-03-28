@@ -2,12 +2,23 @@ import {useEffect, useState} from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import Flight from "./Flight";
 import FlightService from "../services/FlightService"
+import {useNavigate} from "react-router-dom";
 
 export default function Flights(){
     const [loading, setLoading] = useState(true);
     const [flights, setFlights] = useState<any>();
+    const navigate = useNavigate()
+    const roles = localStorage.getItem("roles")
 
     useEffect(() => {
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
+        else if(!roles.includes("ROLE_ADMIN")){
+            console.error("Access denied")
+            navigate("/")
+        }
         const fetchData = async () => {
             setLoading(true);
             try {

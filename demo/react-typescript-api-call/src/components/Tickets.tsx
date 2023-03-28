@@ -2,12 +2,23 @@ import {useEffect, useState} from "react";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import Ticket from "./Ticket";
 import TicketService from "../services/TicketService"
+import {useNavigate} from "react-router-dom";
 
 export default function Tickets(){
     const [loading, setLoading] = useState(true);
     const [tickets, setTickets] = useState<any>();
+    const navigate = useNavigate()
+    const roles = localStorage.getItem("roles")
 
     useEffect(() => {
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
+        else if(!roles.includes("ROLE_USER")){
+            console.error("Access denied")
+            navigate("/")
+        }
         const fetchData = async () => {
             setLoading(true);
             try {

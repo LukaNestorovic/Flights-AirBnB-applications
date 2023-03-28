@@ -75,10 +75,7 @@ export default function Register() {
             UserService.saveUser(user)
                 .then((response) => {
                     console.log(response);
-//                    localStorage.setItem("enable", null)
-//                    localStorage.setItem("id", response.data.id)
-
-//                    navigate("/profile");
+                    navigate("/");
                 })
                 .catch((error) => {
                     console.log(error);
