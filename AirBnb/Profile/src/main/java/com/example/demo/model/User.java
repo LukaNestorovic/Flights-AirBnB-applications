@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.model.dto.UpdateProfileDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,6 +26,14 @@ public class User {
     private String telephone;
     @DBRef
     private Set<Role> roles = new HashSet<>();
+
+    public void update(UpdateProfileDTO updateProfileDTO){
+        if(updateProfileDTO.getName() != null) this.name = updateProfileDTO.getName();
+        if(updateProfileDTO.getSurname() != null) this.surname = updateProfileDTO.getSurname();
+        if(updateProfileDTO.getUsername() != null) this.username = updateProfileDTO.getUsername();
+        if(updateProfileDTO.getPassword() != null) this.password = updateProfileDTO.getPassword();
+        if(updateProfileDTO.getTelephone() != null) this.telephone = updateProfileDTO.getTelephone();
+    }
 
     public User() {
     }
