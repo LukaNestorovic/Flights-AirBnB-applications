@@ -69,6 +69,7 @@ export default function FlightCreate() {
 
     const saveUser = async (e: any) => {
         e.preventDefault();
+        if(user.landingDate > user.takeoffDate) {
             FlightService.create(user)
                 .then((response) => {
                     console.log(response);
@@ -77,6 +78,10 @@ export default function FlightCreate() {
                 .catch((error) => {
                     console.log(error);
                 });
+        }
+        else{
+            alert("Landing date must be after takeoff date!")
+        }
     };
 
     useEffect(() => {
