@@ -69,6 +69,16 @@ public class AccommodationRequestService {
         }
     }
 
+    public void deleteRequest(Long id) {
+        AccommodationRequest request = getRequestById(id);
+
+        if (LocalDate.now().isBefore(request.getStartDate())) {
+            deleteRequest(id);
+        } else {
+            throw new RequestCancellationException("Accommodation request", "It's not possible to cancel the request anymore.");
+        }
+    }
+
     public boolean checkDateOverlap(AccommodationRequest newRequest) {
         List<AccommodationRequest> existingRequests = requestRepository.findAll();
         for (AccommodationRequest existingRequest : existingRequests) {
@@ -80,6 +90,7 @@ public class AccommodationRequestService {
         }
         return false;
     }
+
 
 
 }

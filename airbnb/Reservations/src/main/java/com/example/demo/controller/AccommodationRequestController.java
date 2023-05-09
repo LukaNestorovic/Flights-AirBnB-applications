@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import javax.validation.Valid;
 import java.util.List;
+
+
+
 
 @RestController
 @RequestMapping("/api/accommodation-requests")
