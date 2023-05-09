@@ -73,12 +73,13 @@ public class AccommodationRequestService {
         List<AccommodationRequest> existingRequests = requestRepository.findAll();
         for (AccommodationRequest existingRequest : existingRequests) {
             if (existingRequest.getAccommodation().equals(newRequest.getAccommodation())
-                    && existingRequest.getCheckIn().compareTo(newRequest.getCheckOut()) < 0
-                    && existingRequest.getCheckOut().compareTo(newRequest.getCheckIn()) > 0) {
+                    && existingRequest.getEndDate().compareTo(newRequest.getStartDate()) >= 0
+                    && existingRequest.getStartDate().compareTo(newRequest.getEndDate()) <= 0) {
                 return true;
             }
         }
         return false;
     }
+
 
 }
