@@ -1,5 +1,5 @@
 import axios from "axios";
-const EMPLOYEE_API_BASE_URL = "http://localhost:8083/api/suites";
+const EMPLOYEE_API_BASE_URL = "http://localhost:8085/api/suites";
 
 class SuiteService {
     create(data: any){
