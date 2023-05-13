@@ -10,6 +10,7 @@ import Suites from './components/Suites';
 import UpdateSuite from './components/UpdateSuite';
 import SuitesGuest from "./components/SuitesGuest";
 import ReservationsHost from "./components/ReservationsHost";
+import ReservationsGuest from "./components/ReservationsGuest";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/updatesuite" element={<UpdateSuite/>}/>
             <Route path="/suitesguest" element={<SuitesGuest/>}/>
             <Route path="/reservationshost" element={<ReservationsHost/>}/>
+            <Route path="/reservationsguest" element={<ReservationsGuest/>}/>
         </Routes>
       </BrowserRouter>
     </>

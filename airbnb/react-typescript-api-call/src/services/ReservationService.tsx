@@ -14,6 +14,9 @@ class ReservationService{
     delete(id:any){
         return axios.delete(EMPLOYEE_API_BASE_URL + "/" + id)
     }
+    getByUser(id:any){
+        return axios.get(EMPLOYEE_API_BASE_URL + "/" + id)
+    }
 }
 
 export default new ReservationService();
