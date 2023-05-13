@@ -24,6 +24,10 @@ public class SuiteService {
         return suiteRepository.findAll();
     }
 
+    public List<Suite> findAllByHostId(String id){
+        return suiteRepository.findAllByUserId(id);
+    }
+
     public Suite delete(String id){
         Suite suite = suiteRepository.findOneById(id);
         suiteRepository.delete(suite);

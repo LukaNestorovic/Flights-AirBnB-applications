@@ -2,7 +2,6 @@ package com.example.profile.model.dto;
 
 public class UpdateProfileDTO {
     private String id;
-
     private String email;
     private String name;
     private String surname;

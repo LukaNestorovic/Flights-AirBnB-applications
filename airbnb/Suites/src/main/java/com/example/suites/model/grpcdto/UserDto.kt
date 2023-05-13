@@ -3,7 +3,7 @@ package com.example.suites.model.grpcdto
 import com.example.suites.model.Role
 
 data class UserDto @JvmOverloads constructor(
-    val id: UserNameDto? = null,
+//    val id: UserNameDto? = null,
     val name: String? = "",
     val surname: String? = "",
     val email: String? = "",

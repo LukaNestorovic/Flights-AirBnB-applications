@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,15 +24,20 @@ public class User {
     private String telephone;
     @DBRef
     private Set<Role> roles = new HashSet<>();
-
     @Autowired
     PasswordEncoder encoder;
 
+
+
     public void update(UpdateProfileDTO updateProfileDTO){
+/*        String newPassword = updateProfileDTO.getPassword();
+        String coded = encoder.encode(newPassword);
+        System.out.println(newPassword);
+        System.out.println(coded);*/
         if(updateProfileDTO.getName() != null) this.name = updateProfileDTO.getName();
         if(updateProfileDTO.getSurname() != null) this.surname = updateProfileDTO.getSurname();
         if(updateProfileDTO.getUsername() != null) this.username = updateProfileDTO.getUsername();
-        if(updateProfileDTO.getPassword() != null) this.password = encoder.encode(updateProfileDTO.getPassword());
+        if(updateProfileDTO.getPassword() != null) this.password = updateProfileDTO.getPassword();
         if(updateProfileDTO.getTelephone() != null) this.telephone = updateProfileDTO.getTelephone();
     }
 

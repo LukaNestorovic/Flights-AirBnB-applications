@@ -1,14 +1,8 @@
-package com.example.reservations.model;
-
-import com.example.reservations.model.dto.UpdateStatusDto;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.example.reservations.model.dto;
 
 import java.util.Date;
 
-@Document("reservations")
-public class Reservation {
-    @Id
+public class UpdateStatusDto {
     private String id;
 
     private String suiteId;
@@ -19,10 +13,7 @@ public class Reservation {
     private String userId;
     private String hostId;
 
-    public Reservation() {
-    }
-
-    public Reservation(String id, String suiteId, Date startDate, Date endDate, Integer number, Boolean status, String userId, String hostId) {
+    public UpdateStatusDto(String id, String suiteId, Date startDate, Date endDate, Integer number, Boolean status, String userId, String hostId) {
         this.id = id;
         this.suiteId = suiteId;
         this.startDate = startDate;
@@ -31,10 +22,6 @@ public class Reservation {
         this.status = status;
         this.userId = userId;
         this.hostId = hostId;
-    }
-
-    public void update(UpdateStatusDto update){
-        this.status = true;
     }
 
     public String getId() {

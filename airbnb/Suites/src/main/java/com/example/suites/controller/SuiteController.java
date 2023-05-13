@@ -28,28 +28,33 @@ public class SuiteController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('HOST')")
+//    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<Suite> createSuite(@RequestBody Suite suite) throws Exception {
         Suite newSuite = suiteService.create(suite);
         return new ResponseEntity<>(newSuite, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path="/{id}")
-    @PreAuthorize("hasRole('HOST')")
+//    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<?> deleteSuite(@PathVariable("id") String id){
         return new ResponseEntity<>(suiteService.delete(id), HttpStatus.OK);
     }
 
     @GetMapping(path="/{id}")
-    @PreAuthorize("hasRole('HOST')")
+//    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<Suite> findSuite(@PathVariable("id") String id){
         Suite suite = suiteService.findOneById(id);
-        System.out.println(suite.getName());
         return new ResponseEntity<>(suite, HttpStatus.OK);
     }
 
+    @GetMapping(path="/host/{id}")
+    public ResponseEntity<List<Suite>> findSuiteByHostId(@PathVariable("id") String id){
+        List<Suite> suites = suiteService.findAllByHostId(id);
+        return new ResponseEntity<>(suites, HttpStatus.OK);
+    }
+
     @PutMapping(path="/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('HOST')")
+//    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<Suite> updateSuite(@RequestBody Suite newSuiteInfo, @PathVariable("id") String id) {
         Suite retVal = suiteService.update(newSuiteInfo, id);
         if(retVal==null){

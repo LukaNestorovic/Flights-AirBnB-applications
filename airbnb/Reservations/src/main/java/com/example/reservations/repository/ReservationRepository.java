@@ -9,4 +9,5 @@ public interface ReservationRepository extends MongoRepository<Reservation, Stri
     Reservation findOneById(String id);
 
     List<Reservation> findAllByUserId(String id);
+    List<Reservation> findAllByHostIdAndStatus(String id, Boolean status);
 }
