@@ -58,5 +58,6 @@
 		<module>profile</module>
 		<module>discovery-server</module>
 		<module>api-gateway</module>
+		<module>grpc</module>
 	</modules>
 </project>

@@ -52,7 +52,7 @@ export default function CreateSuite() {
         selected: "",
         startDate: "",
         endDate: "",
-        reserved: false
+        automated: ""
     })
 
     const navigate = useNavigate()
@@ -123,6 +123,23 @@ export default function CreateSuite() {
                     </Select>
                 </FormControl>
                 <TextField id="outlined-basic" label="Price" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="normalPrice" onChange={(e) => handleChange2(e)}/>
+                <FormControl style={{ width: '100ch', alignSelf: 'center' }}>
+                    <InputLabel id="demo-simple-select-label">Automated reservation?</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        name="automated"
+                        id="demo-simple-select"
+                        value={gender1}
+                        label="Answer"
+                        onChange={e => {
+                            handleChange1(e);
+                            handleChange2(e)
+                        }}
+                    >
+                        <MenuItem value={'true'}>Yes</MenuItem>
+                        <MenuItem value={'false'}>No</MenuItem>
+                    </Select>
+                </FormControl>
 
                 <LocalizationProvider style={{width:'60ch'}} dateAdapter={AdapterDayjs}>
                     <DateTimePicker

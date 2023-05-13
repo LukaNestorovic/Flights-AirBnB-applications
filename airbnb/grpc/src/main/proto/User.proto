@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.example.profile;
+
+message userUsername{
+  string userId = 1;
+  string username = 2;
+}
+
+message Username{
+  string username = 1;
+}
+
+service UserService{
+  rpc getUserByUsername(Username) returns(userUsername);
+}
