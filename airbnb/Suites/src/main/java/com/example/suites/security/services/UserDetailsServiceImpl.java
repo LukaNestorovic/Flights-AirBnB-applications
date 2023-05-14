@@ -1,10 +1,10 @@
 package com.example.suites.security.services;
 
-import com.example.profile.UserServiceGrpc;
+
 import com.example.suites.client.UserServiceClient;
 import com.example.suites.model.User;
 import com.example.suites.repository.UserRepository;
-import net.devh.boot.grpc.client.inject.GrpcClient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

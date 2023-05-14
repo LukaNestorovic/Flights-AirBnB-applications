@@ -1,0 +1,53 @@
+version: "3"
+services:
+  mongodocker:
+    image: mongo:latest
+    container_name: "mongodocker"
+    ports:
+      - "27017:27017"
+  profile-docker:
+    image: profile-docker:1.0
+    container_name: profile-docker
+    #port
+    depends_on:
+      - mongodocker
+      - apigateway-docker
+      - discoveryserver-docker
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  reservation-docker:
+    image: reservation-docker:1.0
+    container_name: reservation-docker
+
+    depends_on:
+      - mongodocker
+      - apigateway-docker
+      - discoveryserver-docker
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  suites-docker:
+    image: suites-docker:1.0
+    container_name: suites-docker
+
+    depends_on:
+      - mongodocker
+      - apigateway-docker
+      - discoveryserver-docker
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  apigateway-docker:
+    image: apigateway-docker:1.0
+    container_name: apigateway-docker
+    ports:
+      - "8085:8085"
+    depends_on:
+      - discoveryserver-docker
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  discoveryserver-docker:
+    image: discoveryserver-docker:1.0
+    container_name: discoveryserver-docker
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
