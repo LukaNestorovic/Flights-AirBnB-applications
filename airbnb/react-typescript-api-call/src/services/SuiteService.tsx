@@ -1,5 +1,6 @@
 import axios from "axios";
-const EMPLOYEE_API_BASE_URL = "http://localhost:8083/api/suites";
+import authHeader from "./auth-header";
+const EMPLOYEE_API_BASE_URL = "http://localhost:8085/api/suites";
 
 class SuiteService {
     create(data: any){
@@ -16,6 +17,12 @@ class SuiteService {
     }
     getSearch(data: any){
         return axios.post(EMPLOYEE_API_BASE_URL + "/search", data)
+    }
+    getSuiteById(id: any){
+        return axios.get(EMPLOYEE_API_BASE_URL + "/host/" + id)
+    }
+    deleteAllById(id: any){
+        return axios.delete(EMPLOYEE_API_BASE_URL + "/host/" + id)
     }
 }
 

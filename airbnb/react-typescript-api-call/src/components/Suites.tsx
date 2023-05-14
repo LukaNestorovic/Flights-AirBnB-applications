@@ -12,6 +12,7 @@ export default function Suites(){
     const [loading, setLoading] = useState(true);
     const [suites, setSuites] = useState<any>();
     const navigate = useNavigate()
+    const id = localStorage.getItem("userId")
     const roles = localStorage.getItem("roles")
     const [user, setUser] = useState({
         location: "",
@@ -24,7 +25,7 @@ export default function Suites(){
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await SuiteService.get();
+                const response = await SuiteService.getSuiteById(id);
                 setSuites(response.data);
             } catch (error) {
                 console.log(error);
@@ -61,36 +62,7 @@ export default function Suites(){
     return(
         <TableContainer component={Paper}>
             <Stack direction="column">
-            <h1 style={{textAlign: 'center', alignSelf: 'center'}}>Available Suites</h1>
-                <Stack direction="row">
-                    <TextField id="outlined-basic" label="Location" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="location" onChange={(e) => handleChange2(e)}/>
-                    <TextField id="outlined-basic" label="Guests" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="guests" onChange={(e) => handleChange2(e)}/>
-                    <LocalizationProvider style={{width:'60ch'}} dateAdapter={AdapterDayjs}>
-                        <DateTimePicker
-                            disablePast
-                            label="Start date"
-                            value={user.startDate}
-                            onChange={(newValue:any) => setUser({
-                                ...user,
-                                startDate: newValue
-                            })}
-                        />
-                    </LocalizationProvider>
-
-                    <LocalizationProvider style={{width:'60ch'}} dateAdapter={AdapterDayjs} >
-                        <DateTimePicker
-                            disablePast
-                            label="End date"
-                            value={user.endDate}
-                            onChange={(newValue:any) => setUser({
-                                ...user,
-                                endDate: newValue
-                            })}
-                        />
-                    </LocalizationProvider>
-
-                    <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={saveUser}>Find</Button>
-                </Stack>
+            <h1 style={{textAlign: 'center', alignSelf: 'center'}}>Suites</h1>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>

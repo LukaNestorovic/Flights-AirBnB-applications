@@ -42,6 +42,13 @@ export default function CreateSuite() {
         setGender1(event.target.value as string);
     };
 
+    var [gender2, setGender2] = useState("")
+    const handleChange3 = (event: SelectChangeEvent) => {
+        setGender2(event.target.value as string);
+    };
+
+    const id = localStorage.getItem("userId")
+
     const [user, setUser] = useState({
         name: "",
         location: "",
@@ -52,7 +59,8 @@ export default function CreateSuite() {
         selected: "",
         startDate: "",
         endDate: "",
-        reserved: false
+        automated: "",
+        userId: id
     })
 
     const navigate = useNavigate()
@@ -85,16 +93,16 @@ export default function CreateSuite() {
                 });
     };
 
-/*    useEffect(() => {
+    useEffect(() => {
         if(roles == null){
             console.error("Access denied")
             navigate("/")
         }
-        else if(!roles.includes("ROLE_ADMIN")){
+        else if(!roles.includes("ROLE_HOST")){
             console.error("Access denied")
             navigate("/")
         }
-    },[])*/
+    },[])
 
     return (
         <Container>
@@ -123,6 +131,23 @@ export default function CreateSuite() {
                     </Select>
                 </FormControl>
                 <TextField id="outlined-basic" label="Price" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="normalPrice" onChange={(e) => handleChange2(e)}/>
+                <FormControl style={{ width: '100ch', alignSelf: 'center' }}>
+                    <InputLabel id="demo-simple-select-label">Automated reservation?</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        name="automated"
+                        id="demo-simple-select"
+                        value={gender2}
+                        label="Answer"
+                        onChange={e => {
+                            handleChange3(e);
+                            handleChange2(e)
+                        }}
+                    >
+                        <MenuItem value={'true'}>Yes</MenuItem>
+                        <MenuItem value={'false'}>No</MenuItem>
+                    </Select>
+                </FormControl>
 
                 <LocalizationProvider style={{width:'60ch'}} dateAdapter={AdapterDayjs}>
                     <DateTimePicker

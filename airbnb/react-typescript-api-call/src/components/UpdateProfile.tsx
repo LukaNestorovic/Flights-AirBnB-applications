@@ -19,6 +19,8 @@ import {ChangeEvent, useState} from "react";
 import {useNavigate}           from "react-router-dom";
 import UserService             from "../services/UserService"
 import {wait}                  from "@testing-library/user-event/dist/utils";
+import ReservationService from "../services/ReservationService";
+import SuiteService from "../services/SuiteService";
 
 interface State {
     password: string;
@@ -150,14 +152,61 @@ export default function UpdateProfile() {
     }, []);
     const deleteUser = (e: any) => {
         e.preventDefault();
-        var storageId = localStorage.getItem("userId")
-        UserService.delete(storageId)
-            .then((response) => {
-                console.log(response);
-                window.location.reload();
-            }).catch((error) => {
-            console.log(error);
-        })
+        const userId = localStorage.getItem("userId");
+        const role = localStorage.getItem("roles")
+        if(role!.includes("ROLE_GUEST")){
+            ReservationService.getByUserStatus(userId)
+                .then((response) => {
+                    console.log(response);
+                    if(response.data.length == 0){
+                        ReservationService.deleteAllById(userId)
+                            .then((response) => {
+                                console.log(response);
+                            }).catch((error) => {
+                                console.log(error);
+                        })
+                        UserService.delete(userId)
+                            .then((response) => {
+                                console.log(response);
+                                window.location.reload();
+                            }).catch((error) => {
+                            console.log(error);
+                        })
+                    }
+                    else{
+                        alert("You have active reservations!")
+                    }
+                }).catch((error) => {
+                    console.log(error);
+            })
+        }
+        else if(role!.includes("ROLE_HOST")) {
+            ReservationService.getByHostStatus(userId)
+                .then((response) => {
+                    console.log(response);
+                    if (response.data.length == 0) {
+                        SuiteService.deleteAllById(userId)
+                            .then((response) => {
+                                console.log(response);
+                                window.location.reload();
+                            }).catch((error) => {
+                            console.log(error);
+                        })
+                        UserService.delete(userId)
+                            .then((response) => {
+                                console.log(response);
+                                window.location.reload();
+                            }).catch((error) => {
+                            console.log(error);
+                        })
+                    }
+                    else{
+                        alert("You have active reservations at your suites")
+                    }
+                }).catch((error) => {
+                console.log(error);
+            })
+        }
     };
     return (
         <Container>
