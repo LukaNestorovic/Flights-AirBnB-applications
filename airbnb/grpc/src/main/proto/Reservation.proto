@@ -1,0 +1,24 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "com.reservation";
+
+message ReservationGrpcDto {
+  string id = 1;
+  string suiteId = 2;
+  string startDate = 3;
+  string endDate = 4;
+  int64 number = 5;
+  bool status = 6;
+  string userId = 7;
+  string hostId = 8;
+}
+
+message Response {
+  repeated ReservationGrpcDto reservations = 1;
+}
+
+message Request{}
+
+service SuiteService {
+  rpc getAllReservations(Request) returns (Response);
+}

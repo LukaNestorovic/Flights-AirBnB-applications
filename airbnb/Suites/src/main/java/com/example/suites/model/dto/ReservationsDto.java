@@ -1,0 +1,94 @@
+package com.example.suites.model.dto;
+
+import lombok.Builder;
+
+import java.util.Date;
+@Builder
+public class ReservationsDto {
+    private String id;
+    private String suiteId;
+    private Date startDate;
+    private Date endDate;
+    private Integer number;
+    private Boolean status;
+    private String userId;
+    private String hostId;
+
+    public ReservationsDto() {
+    }
+
+    public ReservationsDto(String id, String suiteId, Date startDate, Date endDate, Integer number, Boolean status, String userId, String hostId) {
+        this.id = id;
+        this.suiteId = suiteId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.number = number;
+        this.status = status;
+        this.userId = userId;
+        this.hostId = hostId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSuiteId() {
+        return suiteId;
+    }
+
+    public void setSuiteId(String suiteId) {
+        this.suiteId = suiteId;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getHostId() {
+        return hostId;
+    }
+
+    public void setHostId(String hostId) {
+        this.hostId = hostId;
+    }
+}

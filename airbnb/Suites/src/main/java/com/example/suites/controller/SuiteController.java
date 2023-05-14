@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -70,7 +71,7 @@ public class SuiteController {
     }
 
     @PostMapping(path="/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Suite>> search(@RequestBody SuitDTO suitDTO){
+    public ResponseEntity<List<Suite>> search(@RequestBody SuitDTO suitDTO) throws ParseException {
         List<Suite> suites = suiteService.findAllByLocation(suitDTO);
         return new ResponseEntity<>(suites, HttpStatus.OK);
     }
