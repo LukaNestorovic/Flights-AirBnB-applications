@@ -40,6 +40,7 @@ export default function ReservationsGuest(){
                             <TableCell align={"center"}>Start date</TableCell>
                             <TableCell align={"center"}>End date</TableCell>
                             <TableCell align={"center"}>Number of guests</TableCell>
+                            <TableCell align={"center"}>Status</TableCell>
                             <TableCell align={"center"}>Delete</TableCell>
                         </TableRow>
                     </TableHead>

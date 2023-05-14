@@ -7,9 +7,8 @@ import java.util.List;
 
 public interface SuiteRepository extends MongoRepository<Suite, String> {
     Suite findOneById(String id);
-
     List<Suite> findAllByLocation(String location);
-
     List<Suite> findAllByUserId(String id);
+    void deleteAllByUserId(String id);
 }
 

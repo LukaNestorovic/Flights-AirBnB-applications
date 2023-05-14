@@ -14,7 +14,7 @@ const SuiteGuest = ({suite,days,gosti}) => {
         startDate: "",
         endDate: "",
         number: "",
-        status: false,
+        status: "",
         userId: "",
         hostId: ""
     })
@@ -30,6 +30,8 @@ const SuiteGuest = ({suite,days,gosti}) => {
         data.number = number!
         data.userId = userId!
         data.hostId = suite.userId
+        if(suite.automated.toString() === "true") { data.status = "true" }
+        else data.status = "false"
         ReservationService.create(data).then((response) => {
             console.log(response);
         })

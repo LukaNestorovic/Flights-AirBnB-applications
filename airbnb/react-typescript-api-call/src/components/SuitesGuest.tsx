@@ -45,18 +45,22 @@ export default function SuitesGuest(){
         localStorage.setItem("endDate", user.endDate)
         localStorage.setItem("startDate", user.startDate)
         localStorage.setItem("number", user.guests)
-        SuiteService.getSearch(user)
-            .then((response) => {
-                console.log(response);
-                setSuites(response.data);
+        if (user.location == null || user.location === "" || user.endDate == null || user.endDate === ""
+            || user.startDate == null || user.startDate === "" || user.guests == null || user.guests === "") {
+            alert("Input all parameters for search!")
+        } else {
+            SuiteService.getSearch(user)
+                .then((response) => {
+                    console.log(response);
+                    setSuites(response.data);
 
-
-//                    navigate("/profile");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+        ;
+    }
     var nesto = new Date(user.endDate)
     var nesto2= new Date(user.startDate)
 

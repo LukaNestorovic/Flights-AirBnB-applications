@@ -44,6 +44,10 @@ public class SuiteService {
         return suiteRepository.save(suite);
     }
 
+    public void deleteAllByHostId(String id){
+        suiteRepository.deleteAllByUserId(id);
+    }
+
     public List<Suite> findAllByLocation(SuitDTO suitDTO){
         List<Suite> suites = suiteRepository.findAllByLocation(suitDTO.getLocation());
         System.out.println(suitDTO.getGuests());

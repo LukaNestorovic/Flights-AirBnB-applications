@@ -17,6 +17,18 @@ class ReservationService{
     getByUser(id:any){
         return axios.get(EMPLOYEE_API_BASE_URL + "/" + id)
     }
+    getByUserStatus(id:any){
+        return axios.get(EMPLOYEE_API_BASE_URL + "/user/" + id)
+    }
+    getByHostStatus(id:any){
+        return axios.get(EMPLOYEE_API_BASE_URL + "/hoststatus/" + id)
+    }
+    deleteAllById(id:any){
+        return axios.delete(EMPLOYEE_API_BASE_URL + "/user/" + id)
+    }
+    getBySuite(id:any){
+        return axios.get(EMPLOYEE_API_BASE_URL + "/suite/" + id)
+    }
 }
 
 export default new ReservationService();

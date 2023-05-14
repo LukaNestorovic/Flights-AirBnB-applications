@@ -21,6 +21,9 @@ class SuiteService {
     getSuiteById(id: any){
         return axios.get(EMPLOYEE_API_BASE_URL + "/host/" + id)
     }
+    deleteAllById(id: any){
+        return axios.delete(EMPLOYEE_API_BASE_URL + "/host/" + id)
+    }
 }
 
 export default new SuiteService();

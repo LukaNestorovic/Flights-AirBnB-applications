@@ -26,15 +26,37 @@ public class ReservationController {
         return new ResponseEntity<>(reservations, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/user/{id}")
+    public ResponseEntity<List<Reservation>> findAllAcceptedByUserId(@PathVariable("id") String id){
+        List<Reservation> reservations = reservationService.findAllAcceptedByUserId(id);
+        return new ResponseEntity<>(reservations, HttpStatus.OK);
+    }
+
     @GetMapping(path = "/host/{id}")
     public ResponseEntity<List<Reservation>> findAllByHostId(@PathVariable("id") String id){
         List<Reservation> reservations = reservationService.findAllByHostId(id);
         return new ResponseEntity<>(reservations, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/hoststatus/{id}")
+    public ResponseEntity<List<Reservation>> findAllByHostIdStatus(@PathVariable("id") String id){
+        List<Reservation> reservations = reservationService.findAllByHostIdStatus(id);
+        return new ResponseEntity<>(reservations, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/suite/{id}")
+    public ResponseEntity<List<Reservation>> findAllBySuiteIdAndStatus(@PathVariable("id") String id){
+        return new ResponseEntity<>(reservationService.findAllBySuiteIdAndStatus(id), HttpStatus.OK);
+    }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> deleteReservation(@PathVariable("id") String id){
         return new ResponseEntity<>(reservationService.delete(id), HttpStatus.OK);
+    }
+    @DeleteMapping(path = "/user/{id}")
+    public ResponseEntity<?> deleteAllByUserId(@PathVariable("id") String id){
+        reservationService.deleteAllbyUserId(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

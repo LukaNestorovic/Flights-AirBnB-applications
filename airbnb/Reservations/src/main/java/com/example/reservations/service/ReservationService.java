@@ -40,8 +40,27 @@ public class ReservationService {
         return reservations;
     }
 
+    public List<Reservation> findAllByHostIdStatus(String id){
+        List<Reservation> reservations = reservationRepository.findAllByHostIdAndStatus(id, true);
+        return reservations;
+    }
+
+    public List<Reservation> findAllAcceptedByUserId(String id){
+        List<Reservation> reservations = reservationRepository.findAllByUserIdAndStatus(id, true);
+        return reservations;
+    }
+
     public Reservation findOneById(String id){
         Reservation reservation = reservationRepository.findOneById(id);
         return reservation;
+    }
+
+    public void deleteAllbyUserId(String id){
+        reservationRepository.deleteAllByUserId(id);
+    }
+
+    public List<Reservation> findAllBySuiteIdAndStatus(String id){
+        List<Reservation> reservations = reservationRepository.findAllBySuiteIdAndStatus(id, true);
+        return reservations;
     }
 }

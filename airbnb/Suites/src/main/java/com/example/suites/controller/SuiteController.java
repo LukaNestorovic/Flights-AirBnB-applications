@@ -40,6 +40,12 @@ public class SuiteController {
         return new ResponseEntity<>(suiteService.delete(id), HttpStatus.OK);
     }
 
+    @DeleteMapping(path = "/host/{id}")
+    public ResponseEntity<?> deleteAllByHostId(@PathVariable("id") String id){
+        suiteService.deleteAllByHostId(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping(path="/{id}")
 //    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<Suite> findSuite(@PathVariable("id") String id){

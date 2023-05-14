@@ -2,6 +2,7 @@ import {TableCell, TableRow} from "@mui/material";
 import SuiteService from "../services/SuiteService";
 import {useState} from "react";
 import {useNavigate}           from "react-router-dom";
+import ReservationService from "../services/ReservationService";
 
 
 // @ts-ignore
@@ -10,8 +11,19 @@ const Suite = ({suite,days,gosti}) => {
     const navigate = useNavigate()
 
     const updateSuite = (e: any) => {
-        navigate("/updatesuite")
-        localStorage.setItem("suiteId", suite.id);
+        ReservationService.getBySuite(suite.id)
+            .then((response) => {
+                console.log(response)
+                if(response.data.length == 0){
+                    navigate("/updatesuite")
+                    localStorage.setItem("suiteId", suite.id);
+                }
+                else{
+                    alert("You have reservations for this suite!")
+                }
+            }).catch((error) => {
+            console.log(error);
+        })
     };
     
     if(suite.selected === "guest"){
