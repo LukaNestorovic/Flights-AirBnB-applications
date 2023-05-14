@@ -34,7 +34,7 @@ public class ReservationController {
 
     @GetMapping(path = "/host/{id}")
     public ResponseEntity<List<Reservation>> findAllByHostId(@PathVariable("id") String id){
-        List<Reservation> reservations = reservationService.findAllByHostId(id);
+        List<Reservation> reservations = reservationService.allReservations(id);
         return new ResponseEntity<>(reservations, HttpStatus.OK);
     }
 
@@ -55,7 +55,7 @@ public class ReservationController {
     }
     @DeleteMapping(path = "/user/{id}")
     public ResponseEntity<?> deleteAllByUserId(@PathVariable("id") String id){
-        reservationService.deleteAllbyUserId(id);
+        reservationService.deleteAllByUserId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
