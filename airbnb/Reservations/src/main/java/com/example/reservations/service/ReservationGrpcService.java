@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @GrpcService
-@Service
 public class ReservationGrpcService extends SuiteServiceGrpc.SuiteServiceImplBase {
 
     private final ReservationRepository reservationRepository;

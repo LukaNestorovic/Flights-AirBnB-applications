@@ -21,8 +21,11 @@ import java.util.Locale;
 @Service
 public class SuiteService {
 
-    @GrpcClient("Reservation")
+    @GrpcClient("suite-service")
     private SuiteServiceGrpc.SuiteServiceBlockingStub suiteServiceBlockingStub;
+
+    
+
     @Autowired
     private SuiteRepository suiteRepository;
 
