@@ -29,6 +29,9 @@ class ReservationService{
     getBySuite(id:any){
         return axios.get(EMPLOYEE_API_BASE_URL + "/suite/" + id)
     }
+    check(data:any){
+        return axios.post(EMPLOYEE_API_BASE_URL + "/check", data)
+    }
 }
 
 export default new ReservationService();

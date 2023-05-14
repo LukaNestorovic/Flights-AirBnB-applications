@@ -18,6 +18,11 @@ const SuiteGuest = ({suite,days,gosti}) => {
         userId: "",
         hostId: ""
     })
+    const [dto, setDto] = useState({
+        suiteId: "",
+        startDate: "",
+        endDate: ""
+    })
 
     const reserveSuite = (e: any) => {
         const startDate = localStorage.getItem("startDate")
@@ -32,12 +37,23 @@ const SuiteGuest = ({suite,days,gosti}) => {
         data.hostId = suite.userId
         if(suite.automated.toString() === "true") { data.status = "true" }
         else data.status = "false"
-        ReservationService.create(data).then((response) => {
-            console.log(response);
-        })
-            .catch((error) => {
-                console.log(error);
-            });
+        dto.suiteId = suite.id
+        dto.startDate = startDate!
+        dto.endDate = endDate!
+        ReservationService.check(dto).then((response) => {
+            console.log(response)
+            if(response.data.toString() === "true"){
+                ReservationService.create(data).then((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
+            else alert("Suite is already reserved in that period!")
+        }).catch((error) => {
+            console.log(error);
+        });
+
     };
 
     if(suite.selected === "guest"){

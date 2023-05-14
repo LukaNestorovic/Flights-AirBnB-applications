@@ -1,6 +1,7 @@
 package com.example.reservations.service;
 
 import com.example.reservations.model.Reservation;
+import com.example.reservations.model.dto.CheckDto;
 import com.example.reservations.model.dto.UpdateStatusDto;
 import com.example.reservations.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,5 +102,17 @@ public class ReservationService {
         }
 
         return retVal;
+    }
+
+    public Boolean reserve(CheckDto checkDto){
+        List<Reservation> reservations = findAllBySuiteIdAndStatus(checkDto.getSuiteId());
+        for(Reservation reservation : reservations){
+            if(checkDto.getStartDate().after(reservation.getStartDate()) && checkDto.getStartDate().before(reservation.getEndDate())
+            || checkDto.getEndDate().after(reservation.getStartDate()) && checkDto.getEndDate().before(reservation.getEndDate())){
+                return false;
+            }
+            else return true;
+        }
+        return true;
     }
 }

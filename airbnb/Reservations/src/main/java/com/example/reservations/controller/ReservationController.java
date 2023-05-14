@@ -1,6 +1,7 @@
 package com.example.reservations.controller;
 
 import com.example.reservations.model.Reservation;
+import com.example.reservations.model.dto.CheckDto;
 import com.example.reservations.model.dto.UpdateStatusDto;
 import com.example.reservations.service.ReservationService;
 import org.springframework.http.HttpStatus;
@@ -73,5 +74,11 @@ public class ReservationController {
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation){
         Reservation newReservation = reservationService.create(reservation);
         return new ResponseEntity<>(newReservation, HttpStatus.CREATED);
+    }
+
+    @PostMapping(path = "/check", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> reserve(@RequestBody CheckDto checkDto){
+        Boolean status = reservationService.reserve(checkDto);
+        return new ResponseEntity<>(status, HttpStatus.OK);
     }
 }
