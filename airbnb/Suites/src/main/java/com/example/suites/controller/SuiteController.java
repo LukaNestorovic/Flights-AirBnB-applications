@@ -22,6 +22,7 @@ public class SuiteController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('GUEST') or hasRole('HOST')")
     public ResponseEntity<List<Suite>> findAll(){
         List<Suite> suites = suiteService.findAll();
         return new ResponseEntity<>(suites, HttpStatus.OK);
@@ -35,32 +36,34 @@ public class SuiteController {
     }
 
     @DeleteMapping(path="/{id}")
-//    @PreAuthorize("hasRole('HOST')")
+    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<?> deleteSuite(@PathVariable("id") String id){
         return new ResponseEntity<>(suiteService.delete(id), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/host/{id}")
+    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<?> deleteAllByHostId(@PathVariable("id") String id){
         suiteService.deleteAllByHostId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(path="/{id}")
-//    @PreAuthorize("hasRole('HOST')")
+    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<Suite> findSuite(@PathVariable("id") String id){
         Suite suite = suiteService.findOneById(id);
         return new ResponseEntity<>(suite, HttpStatus.OK);
     }
 
     @GetMapping(path="/host/{id}")
+    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<List<Suite>> findSuiteByHostId(@PathVariable("id") String id){
         List<Suite> suites = suiteService.findAllByHostId(id);
         return new ResponseEntity<>(suites, HttpStatus.OK);
     }
 
     @PutMapping(path="/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @PreAuthorize("hasRole('HOST')")
+    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<Suite> updateSuite(@RequestBody Suite newSuiteInfo, @PathVariable("id") String id) {
         Suite retVal = suiteService.update(newSuiteInfo, id);
         if(retVal==null){
@@ -70,6 +73,7 @@ public class SuiteController {
     }
 
     @PostMapping(path="/search", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('GUEST') or hasRole('HOST')")
     public ResponseEntity<List<Suite>> search(@RequestBody SuitDTO suitDTO){
         List<Suite> suites = suiteService.findAllByLocation(suitDTO);
         return new ResponseEntity<>(suites, HttpStatus.OK);
