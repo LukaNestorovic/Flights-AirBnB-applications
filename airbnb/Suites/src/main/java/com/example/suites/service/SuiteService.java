@@ -8,6 +8,7 @@ import com.reservation.Request;
 import com.reservation.ReservationGrpcDto;
 import com.reservation.Response;
 import com.reservation.SuiteServiceGrpc;
+import jakarta.ws.rs.GET;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,18 @@ import java.util.Locale;
 @Service
 public class SuiteService {
 
-    @GrpcClient("suite-service")
-    private SuiteServiceGrpc.SuiteServiceBlockingStub suiteServiceBlockingStub;
+    private final SuiteServiceGrpc.SuiteServiceBlockingStub suiteServiceBlockingStub;
+
+    @Autowired
+    public SuiteService(SuiteServiceGrpc.SuiteServiceBlockingStub suiteServiceBlockingStub) {
+        this.suiteServiceBlockingStub = suiteServiceBlockingStub;
+    }
 
     
 
     @Autowired
     private SuiteRepository suiteRepository;
+
 
     public List<ReservationsDto> allReservations() throws ParseException {
         Request request = Request.newBuilder().build();

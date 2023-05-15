@@ -13,4 +13,5 @@ public interface ReservationRepository extends MongoRepository<Reservation, Stri
     void deleteAllByUserId(String id);
     List<Reservation> findAllBySuiteIdAndStatus(String id, Boolean status);
     List<Reservation> findAllBySuiteId(String id);
+    List<Reservation> findAll();
 }
