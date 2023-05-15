@@ -1,6 +1,7 @@
 package com.example.profile.controller;
 
 
+import com.example.profile.model.Role;
 import com.example.profile.model.User;
 import com.example.profile.model.dto.UpdateProfileDTO;
 import com.example.profile.service.UserService;
@@ -10,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/profile")
@@ -43,5 +47,15 @@ public class UserController {
     public ResponseEntity<User> findOneById(@PathVariable("id") String id) {
         User user = userService.findOneById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/user/{username}")
+    public ResponseEntity<User> findByUsername(@PathVariable("username") String username){
+        return new ResponseEntity<>(userService.fidnByUsername(username), HttpStatus.OK);
+    }
+
+    @GetMapping(path="/role")
+    public ResponseEntity<List<Role>> findAllRole(){
+        return new ResponseEntity<>(userService.findAllRole(),HttpStatus.OK);
     }
 }

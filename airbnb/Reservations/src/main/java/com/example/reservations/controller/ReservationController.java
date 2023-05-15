@@ -21,6 +21,11 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<Reservation>> findAll(){
+        return new ResponseEntity<>(reservationService.findAll(), HttpStatus.OK);
+    }
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<List<Reservation>> findAllByUserId(@PathVariable("id") String id){
         List<Reservation> reservations = reservationService.findAllByUserId(id);

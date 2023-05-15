@@ -28,7 +28,7 @@ public class SuiteController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    @PreAuthorize("hasRole('HOST')")
+    @PreAuthorize("hasRole('HOST')")
     public ResponseEntity<Suite> createSuite(@RequestBody Suite suite) throws Exception {
         Suite newSuite = suiteService.create(suite);
         return new ResponseEntity<>(newSuite, HttpStatus.CREATED);
