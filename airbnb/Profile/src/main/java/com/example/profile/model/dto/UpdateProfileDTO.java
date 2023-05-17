@@ -19,6 +19,10 @@ public class UpdateProfileDTO {
         this.telephone = telephone;
     }
 
+    public UpdateProfileDTO() {
+
+    }
+
     public String getId() {
         return id;
     }

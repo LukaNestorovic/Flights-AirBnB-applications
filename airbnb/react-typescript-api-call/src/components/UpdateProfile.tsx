@@ -147,7 +147,23 @@ export default function UpdateProfile() {
             });
     };
 
+    const predji = (e: any) => {
+        e.preventDefault();
+        const role = localStorage.getItem("roles")
+        if(role!.includes("ROLE_GUEST")){
+            navigate("/homeguest")
+        }
+        else if(role!.includes("ROLE_HOST")) {
+            navigate("/homehost")
+        }
+    }
+
     React.useEffect(() => {
+        const roles = localStorage.getItem("roles");
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
         loadUser();
     }, []);
     const deleteUser = (e: any) => {
@@ -258,7 +274,8 @@ export default function UpdateProfile() {
                 <TextField id="outlined-basic" value={user.surname} label="Surname" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="surname" onChange={(e) => handleChange2(e)}/>
                 <TextField id="outlined-basic" value={user.username} label="Username" variant="filled" style={{width:'60ch', alignSelf:'center'}} name="username" onChange={(e) => handleChange2(e)}/>  
                 <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={updateUser}>Update</Button>
-                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={deleteUser}>Delete</Button>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={predji}>Home</Button>
+                <Button variant="contained" style={{width:200, alignSelf:'center', background:'red'}} onClick={deleteUser}>Delete</Button>
             </Stack>
         </Container>
     );

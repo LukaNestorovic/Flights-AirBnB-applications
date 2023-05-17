@@ -40,7 +40,7 @@ public class ReservationService {
     }
 
     public List<Reservation> findAll(){
-        return reservationRepository.findAll();
+        return reservationRepository.findAllByStatus(true);
     }
 
     public List<Reservation> findAllByHostId(String id){

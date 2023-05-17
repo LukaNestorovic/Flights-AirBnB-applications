@@ -1,6 +1,6 @@
 import {TableCell, TableRow} from "@mui/material";
 import SuiteService from "../services/SuiteService";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate}           from "react-router-dom";
 import ReservationService from "../services/ReservationService";
 
@@ -25,6 +25,8 @@ const Suite = ({suite,days,gosti}) => {
             console.log(error);
         })
     };
+
+
     
     if(suite.selected === "guest"){
         return (

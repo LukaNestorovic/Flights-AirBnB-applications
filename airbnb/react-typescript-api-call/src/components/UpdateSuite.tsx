@@ -134,18 +134,32 @@ export default function UpdateSuite() {
     const updateUser = (e: any) => {
         e.preventDefault();
         var storageId = localStorage.getItem("suiteId")
-        SuiteService.update(user, storageId)
-            .then((response) => {
-                console.log(response);
-                alert("Successfully saved user data!");
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if(user.startDate >= user.endDate){
+            alert("Start date can't be after end date!")
+        }
+        else {
+            SuiteService.update(user, storageId)
+                .then((response) => {
+                    console.log(response);
+                    alert("Successfully saved user data!");
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
     React.useEffect(() => {
+        const roles = localStorage.getItem("roles");
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
+        else if(!roles.includes("ROLE_HOST")){
+            console.error("Access denied")
+            navigate("/")
+        }
         loadUser();
     }, []);
     
@@ -197,6 +211,7 @@ export default function UpdateSuite() {
                 </LocalizationProvider>
                 
                 <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={updateUser}>Update</Button>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/homehost")}>Home</Button>
             </Stack>
         </Container>
     );

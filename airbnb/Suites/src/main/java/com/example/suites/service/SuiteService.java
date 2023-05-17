@@ -81,15 +81,21 @@ public class SuiteService {
         List<ReservationDto> reservations = allReservations();
         for(Suite s: retVal) {
             for(ReservationDto r : reservations){
-                if(r.getSuiteId() == s.getId()){
+                System.out.println(r.getSuiteId() + " " + s.getId());
+                if(r.getSuiteId().equals(s.getId())){
                     if(suitDTO.getStartDate().after(r.getStartDate()) && suitDTO.getStartDate().before(r.getEndDate())
                             || suitDTO.getEndDate().after(r.getStartDate()) && suitDTO.getEndDate().before(r.getEndDate())){
+                        System.out.println("ovde");
+                        List<Suite> ret = new ArrayList<>();
+                        return ret;
                     }
                     else {
+                        System.out.println("ovde2");
                         povratna.add(s);
                     }
                 }
                 else {
+                    System.out.println("ovde3");
                     povratna.add(s);
                 }
             }
