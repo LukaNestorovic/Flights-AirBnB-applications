@@ -63,6 +63,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/api/suites/**").permitAll()
                 .requestMatchers("/api/flights/search").permitAll()
                 .requestMatchers("/api/flights").permitAll()
+                .requestMatchers("/api/suites/**").permitAll()
                 .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());

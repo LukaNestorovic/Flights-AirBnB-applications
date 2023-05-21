@@ -1,12 +1,8 @@
-package com.example.suites.security.services;
+package com.example.reservations.security.services;
 
-
-import com.example.suites.client.UserServiceClient;
-import com.example.suites.model.Role;
-import com.example.suites.model.User;
-import com.example.suites.repository.RoleRepository;
-import com.example.suites.repository.UserRepository;
-
+import com.example.reservations.model.User;
+import com.example.reservations.repository.RoleRepository;
+import com.example.reservations.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,10 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import java.util.Arrays;
-import java.util.List;
-
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -54,3 +46,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
 }
+

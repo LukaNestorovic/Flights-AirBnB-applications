@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -36,6 +37,10 @@ public class ReservationService {
     public List<Reservation> findAllByUserId(String id){
         List<Reservation> reservations = reservationRepository.findAllByUserId(id);
         return reservations;
+    }
+
+    public List<Reservation> findAll(){
+        return reservationRepository.findAllByStatus(true);
     }
 
     public List<Reservation> findAllByHostId(String id){
@@ -83,7 +88,8 @@ public class ReservationService {
                 else retVal.add(not);
             }
         }
-        return retVal;
+        List<Reservation> povratna = retVal.stream().distinct().collect(Collectors.toList());
+        return povratna;
     }
 
     public List<Reservation> allReservations(String hostId){
@@ -95,13 +101,12 @@ public class ReservationService {
             List<Reservation> notAccepted = findAllBySuiteId(suiteId);
             List<Reservation> safe = nekiNaziv(accepted, notAccepted);
             for(Reservation ret : safe){
-                if(!retVal.contains(ret)) {
-                    retVal.add(ret);
-                }
+                retVal.add(ret);
             }
         }
-
-        return retVal;
+        System.out.println("aaaa");
+        List<Reservation> povratna = retVal.stream().distinct().collect(Collectors.toList());
+        return povratna;
     }
 
     public Boolean reserve(CheckDto checkDto){

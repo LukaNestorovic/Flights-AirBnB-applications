@@ -22,6 +22,15 @@ export default function SuitesGuest(){
     })
 
     useEffect(() => {
+        const roles = localStorage.getItem("roles");
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
+        else if(!roles.includes("ROLE_GUEST")){
+            console.error("Access denied")
+            navigate("/")
+        }
         const fetchData = async () => {
             setLoading(true);
             try {
@@ -45,19 +54,24 @@ export default function SuitesGuest(){
         localStorage.setItem("endDate", user.endDate)
         localStorage.setItem("startDate", user.startDate)
         localStorage.setItem("number", user.guests)
-        if (user.location == null || user.location === "" || user.endDate == null || user.endDate === ""
-            || user.startDate == null || user.startDate === "" || user.guests == null || user.guests === "") {
-            alert("Input all parameters for search!")
-        } else {
-            SuiteService.getSearch(user)
-                .then((response) => {
-                    console.log(response);
-                    setSuites(response.data);
+        if (user.startDate >= user.endDate){
+            alert("Start date can't be after end date")
+        }
+        else {
+            if (user.location == null || user.location === "" || user.endDate == null || user.endDate === ""
+                || user.startDate == null || user.startDate === "" || user.guests == null || user.guests === "") {
+                alert("Input all parameters for search!")
+            } else {
+                SuiteService.getSearch(user)
+                    .then((response) => {
+                        console.log(response);
+                        setSuites(response.data);
 
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         }
         ;
     }
@@ -130,7 +144,7 @@ export default function SuitesGuest(){
                         </TableBody>
                     )}
                 </Table>
-                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/adminhome")}>Home</Button>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/homeguest")}>Home</Button>
             </Stack>
         </TableContainer>
 

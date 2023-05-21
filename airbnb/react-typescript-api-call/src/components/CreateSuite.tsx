@@ -84,6 +84,10 @@ export default function CreateSuite() {
 
     const saveUser = async (e: any) => {
         e.preventDefault();
+        if(user.startDate >= user.endDate){
+            alert("Start date can't be after end date!")
+        }
+        else {
             SuiteService.create(user)
                 .then((response) => {
                     console.log(response);
@@ -91,6 +95,7 @@ export default function CreateSuite() {
                 .catch((error) => {
                     console.log(error);
                 });
+        }
     };
 
     useEffect(() => {
@@ -173,6 +178,7 @@ export default function CreateSuite() {
                     />
                 </LocalizationProvider>
                 <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={saveUser}>Create</Button>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/homehost")}>Home</Button>
             </Stack>
         </Container>
     );

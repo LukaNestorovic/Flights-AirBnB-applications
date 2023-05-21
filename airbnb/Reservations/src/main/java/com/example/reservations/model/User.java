@@ -1,26 +1,36 @@
-package com.example.profile.model.dto;
+package com.example.reservations.model;
 
-public class UpdateProfileDTO {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Document("users")
+public class User {
+    @Id
     private String id;
-    private String email;
+
     private String name;
     private String surname;
+    private String email;
     private String username;
     private String password;
     private String telephone;
+    @DBRef
+    private Set<Role> roles = new HashSet<>();
 
-    public UpdateProfileDTO(String id, String email,String name, String surname, String username, String password, String telephone) {
-        this.id = id;
-        this.email = email;
+    public User() {
+    }
+
+    public User(String name, String surname, String email, String username,String password, String telephone) {
         this.name = name;
         this.surname = surname;
+        this.email = email;
         this.username = username;
         this.password = password;
         this.telephone = telephone;
-    }
-
-    public UpdateProfileDTO() {
-
     }
 
     public String getId() {
@@ -29,14 +39,6 @@ public class UpdateProfileDTO {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getName() {
@@ -53,6 +55,14 @@ public class UpdateProfileDTO {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {
@@ -77,5 +87,13 @@ public class UpdateProfileDTO {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

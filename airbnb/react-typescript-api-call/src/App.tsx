@@ -11,6 +11,8 @@ import UpdateSuite from './components/UpdateSuite';
 import SuitesGuest from "./components/SuitesGuest";
 import ReservationsHost from "./components/ReservationsHost";
 import ReservationsGuest from "./components/ReservationsGuest";
+import HomeGuest from "./components/HomeGuest";
+import HomeHost from "./components/HomeHost";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path="/suitesguest" element={<SuitesGuest/>}/>
             <Route path="/reservationshost" element={<ReservationsHost/>}/>
             <Route path="/reservationsguest" element={<ReservationsGuest/>}/>
+            <Route path="/homeguest" element={<HomeGuest />} />
+            <Route path="/homehost" element={<HomeHost />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import SuiteService from "../services/SuiteService";
 import ReservationService from "../services/ReservationService";
-import {Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {Button, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import * as React from "react";
 import SuiteGuest from "./SuiteGuest";
 import ReservationHost from "./ReservationHost";
@@ -14,6 +14,15 @@ export default function ReservationsHost(){
 
     useEffect(() => {
         const userId = localStorage.getItem("userId")
+        const roles = localStorage.getItem("roles");
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
+        else if(!roles.includes("ROLE_HOST")){
+            console.error("Access denied")
+            navigate("/")
+        }
         const fetchData = async () => {
             setLoading(true);
             try {
@@ -54,6 +63,7 @@ export default function ReservationsHost(){
                         </TableBody>
                     )}
                 </Table>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/homehost")}>Home</Button>
             </Stack>
         </TableContainer>
     );

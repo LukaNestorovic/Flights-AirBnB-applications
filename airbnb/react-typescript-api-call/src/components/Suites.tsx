@@ -22,6 +22,15 @@ export default function Suites(){
     })
 
     useEffect(() => {
+        const roles = localStorage.getItem("roles");
+        if(roles == null){
+            console.error("Access denied")
+            navigate("/")
+        }
+        else if(!roles.includes("ROLE_HOST")){
+            console.error("Access denied")
+            navigate("/")
+        }
         const fetchData = async () => {
             setLoading(true);
             try {
@@ -92,7 +101,7 @@ export default function Suites(){
                     </TableBody>
                 )}
             </Table>
-                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/adminhome")}>Home</Button>
+                <Button variant="contained" style={{width:200, alignSelf:'center'}} onClick={() => navigate("/homehost")}>Home</Button>
             </Stack>
         </TableContainer>
 

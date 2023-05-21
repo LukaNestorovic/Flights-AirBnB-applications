@@ -78,10 +78,10 @@ export default function LogIn() {
                 localStorage.setItem("user", JSON.stringify(response.data));
                 localStorage.setItem("userId", response.data.id);
                 localStorage.setItem("roles", response.data.roles);
-                if(response.data.roles.includes("ROLE_USER"))
-                    navigate("/userhome")
+                if(response.data.roles.includes("ROLE_GUEST"))
+                    navigate("/homeguest")
                 else
-                    navigate("/adminhome")
+                    navigate("/homehost")
             })
             .catch((error) => {
                 console.log(error);

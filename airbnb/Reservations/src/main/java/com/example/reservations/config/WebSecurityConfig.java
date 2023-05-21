@@ -1,8 +1,8 @@
-package com.example.suites.config;
+package com.example.reservations.config;
 
-import com.example.suites.security.jwt.AuthEntryPointJwt;
-import com.example.suites.security.jwt.AuthTokenFilter;
-import com.example.suites.security.services.UserDetailsServiceImpl;
+import com.example.reservations.security.jwt.AuthEntryPointJwt;
+import com.example.reservations.security.jwt.AuthTokenFilter;
+import com.example.reservations.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

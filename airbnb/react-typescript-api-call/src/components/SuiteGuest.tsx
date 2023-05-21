@@ -45,6 +45,7 @@ const SuiteGuest = ({suite,days,gosti}) => {
             if(response.data.toString() === "true"){
                 ReservationService.create(data).then((response) => {
                     console.log(response);
+                    alert("Reservation is successful")
                 }).catch((error) => {
                     console.log(error);
                 });
