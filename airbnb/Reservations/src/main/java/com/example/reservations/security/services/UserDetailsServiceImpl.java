@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user1 = webClient.get()
-                .uri("http://localhost:8085/api/profile/user/{username}", username)
+                .uri("http://apigateway-docker:8085/api/profile/user/{username}", username)
                 .retrieve()
                 .bodyToMono(User.class)
                 .block();

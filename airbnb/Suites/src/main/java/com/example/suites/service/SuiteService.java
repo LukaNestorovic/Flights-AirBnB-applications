@@ -27,7 +27,7 @@ public class SuiteService {
 
     public List<ReservationDto> allReservations() {
         ReservationDto[] list = webClient.get()
-                .uri("http://localhost:8085/api/reservations")
+                .uri("http://apigateway-docker:8085/api/reservations")
                 .retrieve()
                 .bodyToMono(ReservationDto[].class)
                 .block();
