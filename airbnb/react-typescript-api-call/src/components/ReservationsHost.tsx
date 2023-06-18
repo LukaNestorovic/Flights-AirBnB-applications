@@ -14,6 +14,7 @@ export default function ReservationsHost(){
 
     useEffect(() => {
         const userId = localStorage.getItem("userId")
+        console.log(userId)
         const roles = localStorage.getItem("roles");
         if(roles == null){
             console.error("Access denied")

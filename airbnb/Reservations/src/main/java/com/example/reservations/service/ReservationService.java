@@ -85,7 +85,9 @@ public class ReservationService {
                     || not.getEndDate().after(reservation.getStartDate()) && not.getEndDate().before(reservation.getEndDate())){
                     reservationRepository.delete(not);
                 }
-                else retVal.add(not);
+                else {
+                    retVal.add(not);
+                }
             }
         }
         List<Reservation> povratna = retVal.stream().distinct().collect(Collectors.toList());
@@ -99,12 +101,18 @@ public class ReservationService {
             String suiteId = res.getSuiteId();
             List<Reservation> accepted = findAllBySuiteIdAndStatus(suiteId);
             List<Reservation> notAccepted = findAllBySuiteId(suiteId);
-            List<Reservation> safe = nekiNaziv(accepted, notAccepted);
-            for(Reservation ret : safe){
-                retVal.add(ret);
+            if(accepted.isEmpty()) {
+                for(Reservation ret : notAccepted){
+                    retVal.add(ret);
+                }
+            }
+            else {
+                List<Reservation> safe = nekiNaziv(accepted, notAccepted);
+                for (Reservation ret : safe) {
+                    retVal.add(ret);
+                }
             }
         }
-        System.out.println("aaaa");
         List<Reservation> povratna = retVal.stream().distinct().collect(Collectors.toList());
         return povratna;
     }
